@@ -1,0 +1,62 @@
+{
+  "common": {
+    "metadata": {
+      "title": {
+        "default": "Márcio Sobral",
+        "template": "%s - Márcio Sobral"
+      },
+      "description": "Desenvolvedor Full Stack com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance.",
+      "keywords": "Desenvolvedor Full Stack, React, Next.js, TypeScript, JavaScript, Node.js, Desenvolvimento Web, Frontend, Backend, Otimização de Performance, SEO Técnico, Cibersegurança, Código Limpo, Aplicações Escaláveis",
+      "openGraph": {
+        "title": "Márcio Sobral - Desenvolvedor Full Stack",
+        "description": "Desenvolvedor Full Stack com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance.",
+        "type": "website"
+      },
+      "jsonLd": {
+        "jobTitle": "Desenvolvedor Full Stack",
+        "description": "Desenvolvedor Full Stack com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance. Foco em SEO técnico, otimização de performance, desenvolvimento security-first e práticas de código limpo. Background em Cibersegurança.",
+        "knowsAbout": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Node.js",
+          "JavaScript",
+          "Desenvolvimento Web",
+          "Otimização de Performance",
+          "SEO Técnico",
+          "Cibersegurança",
+          "Código Limpo"
+        ]
+      }
+    },
+    "navigation": {
+      "home": "Início",
+      "about": "Sobre Mim",
+      "technologies": "Tecnologias",
+      "experience": "Experiência",
+      "projects": "Projetos",
+      "contact": "Contato"
+    },
+    "footer": {
+      "rights": "Todos os direitos reservados."
+    },
+    "error": {
+      "title": "Algo deu errado",
+      "subtitle": "Ocorreu um erro inesperado. Por favor, tente novamente.",
+      "action": "Tentar novamente"
+    },
+    "notFound": {
+      "title": "Página não encontrada",
+      "subtitle": "A página que você procura não existe ou foi movida.",
+      "action": "Ir para o início"
+    },
+    "settings": {
+      "theme": "Tema",
+      "mode": "Modo",
+      "light": "Claro",
+      "dark": "Escuro",
+      "toggle": "Alternar configurações",
+      "language": "Idioma"
+    }
+  }
+}

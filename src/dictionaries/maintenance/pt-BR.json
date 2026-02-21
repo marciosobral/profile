@@ -1,0 +1,14 @@
+{
+  "maintenance": {
+    "metadata": {
+      "title": "Manutenção",
+      "description": "Site em manutenção. Voltaremos em breve.",
+      "noIndex": true,
+      "noCache": true
+    },
+    "title": "Ops! Página em Manutenção",
+    "subtitle": "Esta página está sendo atualizada no momento. Volte em breve.",
+    "description": "Estou trabalhando duro para trazer novas atualizações. Fique ligado!",
+    "contact": "Precisa falar comigo? Entre em contato:"
+  }
+}
