@@ -1,0 +1,14 @@
+{
+  "maintenance": {
+    "metadata": {
+      "title": "Maintenance",
+      "description": "Site under maintenance. We will be back soon.",
+      "noIndex": true,
+      "noCache": true
+    },
+    "title": "Oops! Page Under Maintenance",
+    "subtitle": "This page is currently being updated. Please check back later.",
+    "description": "I'm working hard to bring you updates. Stay tuned!",
+    "contact": "Need assistance? Contact me at:"
+  }
+}

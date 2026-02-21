@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ededed;
+  --foreground: #171717;
+  --header: #dcdcdc;
+  --footer: #dcdcdc;
+
+  --fs-48: 48px;
+  --fs-32: 32px;
+  --fs-24: 24px;
+  --fs-18: 18px;
+  --fs-14: 14px;
+  --fs-12: 12px;
+  --lh-tight: 1.2;
+  --lh-normal: 1.45;
+
+  --row-pad: 12px;
+  --row-gap: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode]) {
+    --background: #171717;
+    --foreground: #ededed;
+    --header: #000000;
+    --footer: #000000;
+  }
+}
+
+[data-theme='ink'][data-mode='light'] {
+  --background: #ededed;
+  --foreground: #171717;
+  --header: #dcdcdc;
+  --footer: #dcdcdc;
+}
+
+[data-theme='ink'][data-mode='dark'] {
+  --background: #171717;
+  --foreground: #ededed;
+  --header: #000000;
+  --footer: #000000;
+}
+
+[data-theme='ocean'][data-mode='light'] {
+  --background: #fff8ee;
+  --foreground: #212842;
+  --header: #f0e6d6;
+  --footer: #f0e6d6;
+}
+
+[data-theme='ocean'][data-mode='dark'] {
+  --background: #212842;
+  --foreground: #fff8ee;
+  --header: #192036;
+  --footer: #192036;
+}
+
+html {
+  background: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --header-color: var(--header);
+  --footer-color: var(--footer);
+}
+
+@layer base {
+  h1 {
+    font-size: var(--fs-48);
+    line-height: var(--lh-tight);
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: var(--fs-24);
+    line-height: var(--lh-tight);
+    font-weight: 600;
+  }
+
+  body {
+    font-size: var(--fs-14);
+    line-height: var(--lh-normal);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}

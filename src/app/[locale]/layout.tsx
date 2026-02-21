@@ -1,0 +1,69 @@
+import type { Metadata } from 'next';
+import { Montserrat } from 'next/font/google';
+import { hasLocale } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+
+import { generateMetadata as generateMeta } from '@/lib/metadata';
+import { routing } from '@/i18n/routing';
+import { getLocaleInfo } from '@/lib/i18n';
+import { Body } from '@/components/layout/body';
+import { Html } from '@/components/layout/html';
+import { Main } from '@/components/layout/main';
+import { ThemeProvider } from '@/components/theme/provider';
+import { SettingsPanel } from '@/components/theme/settings-panel';
+import { JsonLd } from '@/components/seo/json-ld';
+
+interface LocaleLayoutProps {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+});
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return generateMeta('common', locale);
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: LocaleLayoutProps) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
+  const localeInfo = getLocaleInfo(locale);
+
+  return (
+    <Html
+      lang={localeInfo.htmlLang}
+      dir={localeInfo.direction}
+      className={montserrat.className}
+    >
+      <Body>
+        <JsonLd locale={locale} />
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            <Main>{children}</Main>
+            <SettingsPanel />
+          </ThemeProvider>
+        </NextIntlClientProvider>
+      </Body>
+    </Html>
+  );
+}

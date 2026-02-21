@@ -1,0 +1,43 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Ensure LF in source files (useful when collaborating across OSes)
+*.js     text eol=lf
+*.jsx    text eol=lf
+*.ts     text eol=lf
+*.tsx    text eol=lf
+*.json   text eol=lf
+*.css    text eol=lf
+*.scss   text eol=lf
+*.md     text
+*.mdx    text
+
+# SVGs are text so diffs are readable
+*.svg    text
+
+# Binary files
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.webp   binary
+*.pdf    binary
+*.mov    binary
+*.mp4    binary
+*.woff   binary
+*.woff2  binary
+
+# Exclude build and local files from archives produced by "git archive"
+.next/         export-ignore
+out/           export-ignore
+dist/          export-ignore
+build/         export-ignore
+node_modules/  export-ignore
+.env           export-ignore
+.env.*.local   export-ignore
+
+# GitHub linguist overrides (improves language detection on the repo page)
+*.ts   linguist-language=TypeScript
+*.tsx  linguist-language=TypeScript
+*.md   linguist-documentation=true
