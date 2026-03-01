@@ -13,6 +13,7 @@ import { getLocaleInfo } from '@/lib/i18n';
 import { Body } from '@/components/layout/body';
 import { Html } from '@/components/layout/html';
 import { Main } from '@/components/layout/main';
+import { StateProvider } from '@/components/state/provider';
 import { ThemeProvider } from '@/components/theme/provider';
 import { SettingsPanel } from '@/components/theme/settings-panel';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -60,10 +61,12 @@ export default async function LocaleLayout({
       <Body>
         <JsonLd locale={locale} />
         <NextIntlClientProvider>
-          <ThemeProvider>
-            <Main>{children}</Main>
-            <SettingsPanel />
-          </ThemeProvider>
+          <StateProvider>
+            <ThemeProvider>
+              <Main>{children}</Main>
+              <SettingsPanel />
+            </ThemeProvider>
+          </StateProvider>
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
