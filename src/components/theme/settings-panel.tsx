@@ -3,8 +3,8 @@
 import { useTransition } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { GearSixIcon } from '@phosphor-icons/react';
-import { useTheme } from './use-theme';
-import { useOpenState } from '@/components/state/use-open-state';
+import { useTheme } from '@/hooks/use-theme';
+import { useOpenState } from '@/hooks/use-open-state';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { getAvailableLocales, getLocaleInfo, type Locale } from '@/lib/i18n';
 import type { Mode } from '@/lib/theme';

@@ -13,8 +13,8 @@ import { getLocaleInfo } from '@/lib/i18n';
 import { Body } from '@/components/layout/body';
 import { Html } from '@/components/layout/html';
 import { Main } from '@/components/layout/main';
-import { StateProvider } from '@/components/state/provider';
-import { ThemeProvider } from '@/components/theme/provider';
+import { StateProvider } from '@/providers/state';
+import { ThemeProvider } from '@/providers/theme';
 import { SettingsPanel } from '@/components/theme/settings-panel';
 import { JsonLd } from '@/components/seo/json-ld';
 

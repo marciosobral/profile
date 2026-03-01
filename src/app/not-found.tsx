@@ -6,7 +6,7 @@ import { StatusPage } from '@/components/layout/status-page';
 import { Html } from '@/components/layout/html';
 import { Body } from '@/components/layout/body';
 import { Main } from '@/components/layout/main';
-import { ThemeProvider } from '@/components/theme/provider';
+import { ThemeProvider } from '@/providers/theme';
 import { SettingsPanel } from '@/components/theme/settings-panel';
 
 export default async function RootNotFound() {

@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useContext } from 'react';
-import { StateContext } from './provider';
+import { StateContext } from '@/providers/state';
 
 export function useOpenState(key: string) {
   const context = useContext(StateContext);
