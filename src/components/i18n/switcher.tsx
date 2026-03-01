@@ -4,7 +4,8 @@ import { useLocale } from 'next-intl';
 import { useState, useTransition } from 'react';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { getAvailableLocales, getLocaleInfo, Locale } from '@/lib/i18n';
+import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
+import { Locale } from '@/config/i18n';
 
 export default function LanguageSwitcher() {
   const router = useRouter();

@@ -5,6 +5,7 @@ import {
   LinkedinLogoIcon,
 } from '@phosphor-icons/react/ssr';
 import { StatusPage } from '@/components/layout/status-page';
+import { siteConfig } from '@/config/site';
 
 export default function Maintenance() {
   const t = useTranslations();
@@ -26,7 +27,7 @@ export default function Maintenance() {
 
       <div className='flex justify-center gap-4'>
         <a
-          href='mailto:contato@marciosobral.com.br'
+          href={`mailto:${siteConfig.email}`}
           className='flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-5 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
         >
           <EnvelopeSimpleIcon

@@ -1,0 +1,37 @@
+{
+  "cookies": {
+    "metadata": {
+      "title": "Política de Cookies",
+      "description": "Saiba mais sobre os cookies utilizados neste site."
+    },
+    "title": "Política de Cookies",
+    "lastUpdated": "Última atualização: 1 de março de 2026",
+    "intro": "Esta página explica o que são cookies, como este site os utiliza e quais são suas opções.",
+    "whatAreCookies": {
+      "title": "O que são cookies?",
+      "description": "Cookies são pequenos arquivos de texto armazenados no seu dispositivo pelo navegador. Eles ajudam os sites a lembrar suas preferências e melhorar sua experiência."
+    },
+    "cookiesWeUse": {
+      "title": "Cookies que utilizamos",
+      "functional": {
+        "title": "Cookies funcionais",
+        "description": "Estes cookies são necessários para o funcionamento correto do site e para lembrar suas preferências. Eles não rastreiam você nem coletam informações pessoais.",
+        "theme": "Preferência de tema — lembra o tema visual escolhido (ex: ink, ocean).",
+        "mode": "Modo de exibição — lembra sua preferência de modo claro ou escuro.",
+        "locale": "Idioma — lembra seu idioma preferido."
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Este site utiliza Vercel Analytics e Speed Insights para entender padrões gerais de uso. Esses serviços são focados em privacidade: não utilizam cookies para rastreamento, não coletam dados pessoais e não acompanham você em outros sites."
+      }
+    },
+    "yourChoices": {
+      "title": "Suas opções",
+      "description": "Você pode gerenciar ou excluir cookies nas configurações do seu navegador. Note que desativar cookies funcionais pode afetar sua experiência, pois o site não conseguirá lembrar suas preferências de tema, modo ou idioma."
+    },
+    "contact": {
+      "title": "Contato",
+      "description": "Se tiver alguma dúvida sobre esta política de cookies, entre em contato pelo e-mail {email}."
+    }
+  }
+}

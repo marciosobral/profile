@@ -1,4 +1,4 @@
-export const routes = ['', 'maintenance'] as const;
+export const routes = ['', 'maintenance', 'cookies'] as const;
 
 export type Route = (typeof routes)[number];
 export type RoutePath = `/${Route}`;

@@ -1,8 +1,4 @@
-import type {
-  DomainsConfig,
-  LocalePrefix,
-  Pathnames,
-} from 'next-intl/routing';
+import type { DomainsConfig, LocalePrefix } from 'next-intl/routing';
 import type { RoutePath } from './routes';
 
 export const locales = ['en-US', 'pt-BR'] as const;
@@ -34,6 +30,10 @@ export const pathnames = {
   '/maintenance': {
     'en-US': '/maintenance',
     'pt-BR': '/manutencao',
+  },
+  '/cookies': {
+    'en-US': '/cookies',
+    'pt-BR': '/politica-de-cookies',
   },
 } satisfies Record<RoutePath, string | Record<Locale, string>>;
 
