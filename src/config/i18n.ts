@@ -25,6 +25,25 @@ export const domains = [
   },
 ] satisfies DomainsConfig<typeof locales>;
 
+function normalizeHost(value: string) {
+  return value.toLowerCase().split(':')[0];
+}
+
+export function getDomainDefaultLocale(host?: string | null): Locale {
+  if (!host) return defaultLocale;
+
+  const normalizedHost = normalizeHost(host);
+  const matchedDomain = domains.find((domainConfig) => {
+    const normalizedDomain = normalizeHost(domainConfig.domain);
+    return (
+      normalizedHost === normalizedDomain ||
+      normalizedHost.endsWith(`.${normalizedDomain}`)
+    );
+  });
+
+  return (matchedDomain?.defaultLocale ?? defaultLocale) as Locale;
+}
+
 export const pathnames = {
   '/': '/',
   '/maintenance': {

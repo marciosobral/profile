@@ -1,10 +1,15 @@
 import type { MetadataRoute } from 'next';
 
-import { locales, defaultLocale, localePrefix, pathnames } from '@/config/i18n';
+import {
+  locales,
+  getDomainDefaultLocale,
+  localePrefix,
+  pathnames,
+} from '@/config/i18n';
 import { excludedRoutes } from '@/config/routes';
 import { getUrl } from '@/utils/host';
 
-function getLocalizedPaths(routePath: string): string[] {
+function getLocalizedPaths(routePath: string, defaultLocale: string): string[] {
   const localized = pathnames[routePath as keyof typeof pathnames];
   if (!localized) return [routePath];
 
@@ -21,7 +26,11 @@ function getLocalizedPaths(routePath: string): string[] {
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const baseUrl = await getUrl();
-  const disallowPaths = excludedRoutes.flatMap(getLocalizedPaths);
+  const host = new URL(baseUrl).host;
+  const domainDefaultLocale = getDomainDefaultLocale(host);
+  const disallowPaths = excludedRoutes.flatMap((routePath) =>
+    getLocalizedPaths(routePath, domainDefaultLocale),
+  );
 
   return {
     rules: [

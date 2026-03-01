@@ -4,15 +4,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
 import { isMaintenanceActive } from './lib/maintenance';
 import { getHostFromHeaders } from './utils/host';
-import { pathnames } from './config/i18n';
+import { getDomainDefaultLocale, pathnames } from './config/i18n';
 import { MAINTENANCE_ROUTE } from './config/routes';
 
 const handleI18nRouting = createMiddleware(routing);
-
-function getDomainDefaultLocale(host: string) {
-  const domain = routing.domains?.find((d) => d.domain === host);
-  return domain?.defaultLocale ?? routing.defaultLocale;
-}
 
 function getLocalizedMaintenancePath(locale: string): string {
   const maintenancePathnames = pathnames[MAINTENANCE_ROUTE];

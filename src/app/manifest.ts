@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { siteConfig } from '@/config/site';
-import { getLocaleFromCookie } from '@/lib/i18n';
+import { getLocaleFromCookie } from '@/i18n/server';
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const locale = await getLocaleFromCookie();
