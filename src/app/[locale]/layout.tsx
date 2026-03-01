@@ -4,6 +4,8 @@ import { hasLocale } from 'next-intl';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { generateMetadata as generateMeta } from '@/lib/metadata';
 import { routing } from '@/i18n/routing';
@@ -63,6 +65,8 @@ export default async function LocaleLayout({
             <SettingsPanel />
           </ThemeProvider>
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </Body>
     </Html>
   );
