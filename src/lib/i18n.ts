@@ -1,6 +1,5 @@
 import { defaultLocale, localeInfo, locales } from '@/config/i18n';
-
-export type Locale = (typeof locales)[number];
+import type { Locale } from '@/config/i18n';
 
 const availableLocales = locales;
 

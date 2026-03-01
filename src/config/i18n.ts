@@ -1,10 +1,23 @@
+import type {
+  DomainsConfig,
+  LocalePrefix,
+  Pathnames,
+} from 'next-intl/routing';
 import type { RoutePath } from './routes';
 
 export const locales = ['en-US', 'pt-BR'] as const;
 
-export const defaultLocale = 'pt-BR' as const;
+export type Locale = (typeof locales)[number];
 
-export const localePrefix = 'as-needed' as const;
+export const defaultLocale = 'pt-BR' satisfies Locale;
+
+export const localePrefix = {
+  mode: 'as-needed',
+  prefixes: {
+    'en-US': '/en',
+    'pt-BR': '/br',
+  },
+} satisfies LocalePrefix<typeof locales, 'as-needed'>;
 
 export const localeDetection = true;
 
@@ -14,19 +27,25 @@ export const domains = [
     defaultLocale: 'pt-BR',
     locales: ['pt-BR', 'en-US'],
   },
-] as const;
+] satisfies DomainsConfig<typeof locales>;
 
-type LocalizedPathname = string | Record<(typeof locales)[number], string>;
-
-export const pathnames: Record<RoutePath, LocalizedPathname> = {
+export const pathnames = {
   '/': '/',
   '/maintenance': {
     'en-US': '/maintenance',
     'pt-BR': '/manutencao',
   },
+} satisfies Record<RoutePath, string | Record<Locale, string>>;
+
+export type LocaleInfo = {
+  name: string;
+  flag: string;
+  htmlLang: string;
+  openGraphLocale: string;
+  direction: 'ltr' | 'rtl';
 };
 
-export const localeInfo = {
+export const localeInfo: Record<Locale, LocaleInfo> = {
   'en-US': {
     name: 'English',
     flag: '🇺🇸',
@@ -41,4 +60,4 @@ export const localeInfo = {
     openGraphLocale: 'pt_BR',
     direction: 'ltr',
   },
-} as const;
+};
