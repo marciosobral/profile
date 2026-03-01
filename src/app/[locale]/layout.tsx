@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+import { Montserrat, Playfair_Display } from 'next/font/google';
 import { hasLocale } from 'next-intl';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -29,6 +29,12 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+});
+
 export async function generateMetadata({
   params,
 }: {
@@ -56,7 +62,7 @@ export default async function LocaleLayout({
     <Html
       lang={localeInfo.htmlLang}
       dir={localeInfo.direction}
-      className={montserrat.className}
+      className={`${montserrat.className} ${playfairDisplay.variable}`}
     >
       <Body>
         <JsonLd locale={locale} />

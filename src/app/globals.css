@@ -140,6 +140,10 @@ html {
 }
 
 @layer base {
+  .font-display {
+    font-family: var(--font-playfair), Georgia, serif;
+  }
+
   h1 {
     font-size: var(--fs-48);
     line-height: var(--lh-tight);
