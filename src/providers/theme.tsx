@@ -20,12 +20,16 @@ import {
   type Theme,
   type Mode,
 } from '@/lib/theme';
+import {
+  runRadialRevealTransition,
+  type TransitionOrigin,
+} from '@/lib/theme/radial-reveal';
 
 interface ThemeContextValue {
   theme: Theme;
   mode: Mode;
-  setTheme: (theme: Theme) => void;
-  toggleMode: () => void;
+  setTheme: (theme: Theme, origin?: TransitionOrigin) => void;
+  toggleMode: (origin?: TransitionOrigin) => void;
   themes: readonly Theme[];
   modes: readonly Mode[];
 }
@@ -70,20 +74,29 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setTheme = useCallback(
-    (newTheme: Theme) => {
-      setThemeState(newTheme);
-      setCookie(THEME_COOKIE, newTheme);
-      applyAttributes(newTheme, mode);
+    (newTheme: Theme, origin?: TransitionOrigin) => {
+      if (newTheme === theme) return;
+
+      runRadialRevealTransition(() => {
+        setThemeState(newTheme);
+        setCookie(THEME_COOKIE, newTheme);
+        applyAttributes(newTheme, mode);
+      }, origin);
     },
-    [mode],
+    [mode, theme],
   );
 
-  const toggleMode = useCallback(() => {
-    const newMode = mode === 'light' ? 'dark' : 'light';
-    setModeState(newMode);
-    setCookie(MODE_COOKIE, newMode);
-    applyAttributes(theme, newMode);
-  }, [theme, mode]);
+  const toggleMode = useCallback(
+    (origin?: TransitionOrigin) => {
+      const newMode = mode === 'light' ? 'dark' : 'light';
+      runRadialRevealTransition(() => {
+        setModeState(newMode);
+        setCookie(MODE_COOKIE, newMode);
+        applyAttributes(theme, newMode);
+      }, origin);
+    },
+    [theme, mode],
+  );
 
   useEffect(() => {
     if (!mounted) return;

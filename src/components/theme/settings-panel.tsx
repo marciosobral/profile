@@ -1,12 +1,17 @@
 'use client';
 
-import { useTransition } from 'react';
+import { useTransition, type MouseEvent } from 'react';
 import { Locale, useLocale, useTranslations } from 'next-intl';
+
 import { GearSixIcon } from '@phosphor-icons/react';
 import { useTheme } from '@/hooks/use-theme';
 import { useOpenState } from '@/hooks/use-open-state';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
+import {
+  runRadialRevealTransition,
+  type TransitionOrigin,
+} from '@/lib/theme/radial-reveal';
 import type { Mode } from '@/lib/theme';
 
 export function SettingsPanel() {
@@ -20,15 +25,34 @@ export function SettingsPanel() {
   const [isPending, startTransition] = useTransition();
   const availableLocales = getAvailableLocales();
 
-  const handleLocaleSwitch = (newLocale: Locale) => {
+  const getTransitionOrigin = (
+    event: MouseEvent<HTMLButtonElement>,
+  ): TransitionOrigin => ({
+    x: event.clientX,
+    y: event.clientY,
+  });
+
+  const handleLocaleSwitch = (
+    newLocale: Locale,
+    event: MouseEvent<HTMLButtonElement>,
+  ) => {
     if (newLocale === currentLocale || isPending) return;
+
+    const origin = getTransitionOrigin(event);
     startTransition(() => {
-      router.replace(pathname, { locale: newLocale });
+      runRadialRevealTransition(() => {
+        router.replace(pathname, { locale: newLocale });
+      }, origin);
     });
   };
 
-  const handleModeSwitch = (newMode: Mode) => {
-    if (newMode !== mode) toggleMode();
+  const handleModeSwitch = (
+    newMode: Mode,
+    event: MouseEvent<HTMLButtonElement>,
+  ) => {
+    if (newMode !== mode) {
+      toggleMode(getTransitionOrigin(event));
+    }
   };
 
   const modeOptions = [
@@ -58,7 +82,7 @@ export function SettingsPanel() {
           {modeOptions.map((opt) => (
             <button
               key={opt.value}
-              onClick={() => handleModeSwitch(opt.value)}
+              onClick={(event) => handleModeSwitch(opt.value, event)}
               className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                 mode === opt.value
                   ? 'bg-(--surface-soft) font-medium'
@@ -77,7 +101,9 @@ export function SettingsPanel() {
           {themeOptions.map((opt) => (
             <button
               key={opt.value}
-              onClick={() => setTheme(opt.value)}
+              onClick={(event) =>
+                setTheme(opt.value, getTransitionOrigin(event))
+              }
               className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                 theme === opt.value
                   ? 'bg-(--surface-soft) font-medium'
@@ -96,7 +122,7 @@ export function SettingsPanel() {
           {localeOptions.map((opt) => (
             <button
               key={opt.value}
-              onClick={() => handleLocaleSwitch(opt.value)}
+              onClick={(event) => handleLocaleSwitch(opt.value, event)}
               disabled={isPending}
               className={`w-full px-3 py-2 text-left text-sm transition-colors disabled:opacity-50 ${
                 currentLocale === opt.value
