@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { MagnifyingGlassIcon, ArrowLeftIcon } from '@phosphor-icons/react/ssr';
+import { MagnifyingGlassIcon, ArrowRightIcon } from '@phosphor-icons/react/ssr';
 import Link from 'next/link';
 import { StatusPage } from '@/components/layout/status-page';
 
@@ -18,13 +18,13 @@ export default async function RootNotFound() {
               href='/'
               className='inline-flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-6 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
             >
-              <ArrowLeftIcon
-                className='h-4 w-4 text-(--text-soft)'
-                weight='light'
-              />
               <span className='text-(--text-muted)'>
                 {t('notFound.action')}
               </span>
+              <ArrowRightIcon
+                className='h-4 w-4 text-(--text-soft)'
+                weight='light'
+              />
             </Link>
           }
         />
