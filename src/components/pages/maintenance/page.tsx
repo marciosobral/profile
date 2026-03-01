@@ -17,35 +17,35 @@ export default function Maintenance() {
       // footer={t('common.footer.rights')}
     >
       <div className='mx-auto mb-10 flex w-16 items-center gap-2'>
-        <div className='bg-foreground/10 h-px flex-1' />
+        <div className='h-px flex-1 bg-(--line-soft)' />
       </div>
 
-      <p className='text-foreground/30 mb-5 text-xs font-medium tracking-[0.2em] uppercase'>
+      <p className='mb-5 text-xs font-medium tracking-[0.2em] text-(--text-muted) uppercase'>
         {t('maintenance.contact')}
       </p>
 
       <div className='flex justify-center gap-4'>
         <a
           href='mailto:contato@marciosobral.com.br'
-          className='border-foreground/8 hover:border-foreground/20 hover:bg-foreground/3 flex items-center gap-2.5 rounded-xl border px-5 py-3 text-sm transition-all'
+          className='flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-5 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
         >
           <EnvelopeSimpleIcon
-            className='text-foreground/40 h-4 w-4'
+            className='h-4 w-4 text-(--text-soft)'
             weight='light'
           />
-          <span className='text-foreground/60'>Email</span>
+          <span className='text-(--text-muted)'>Email</span>
         </a>
         <a
           href='https://linkedin.com/in/marciosobral'
-          className='border-foreground/8 hover:border-foreground/20 hover:bg-foreground/3 flex items-center gap-2.5 rounded-xl border px-5 py-3 text-sm transition-all'
+          className='flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-5 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
           target='_blank'
           rel='noopener noreferrer'
         >
           <LinkedinLogoIcon
-            className='text-foreground/40 h-4 w-4'
+            className='h-4 w-4 text-(--text-soft)'
             weight='light'
           />
-          <span className='text-foreground/60'>LinkedIn</span>
+          <span className='text-(--text-muted)'>LinkedIn</span>
         </a>
       </div>
     </StatusPage>

@@ -5,6 +5,12 @@
   --foreground: #171717;
   --header: #dcdcdc;
   --footer: #dcdcdc;
+  --text-muted: rgb(23 23 23 / 72%);
+  --text-soft: rgb(23 23 23 / 56%);
+  --text-faint: rgb(23 23 23 / 42%);
+  --line-soft: rgb(23 23 23 / 18%);
+  --surface-soft: rgb(23 23 23 / 6%);
+  --border-soft: rgb(23 23 23 / 14%);
 
   --fs-48: 48px;
   --fs-32: 32px;
@@ -25,6 +31,12 @@
     --foreground: #ededed;
     --header: #000000;
     --footer: #000000;
+    --text-muted: rgb(237 237 237 / 78%);
+    --text-soft: rgb(237 237 237 / 62%);
+    --text-faint: rgb(237 237 237 / 45%);
+    --line-soft: rgb(237 237 237 / 26%);
+    --surface-soft: rgb(237 237 237 / 12%);
+    --border-soft: rgb(237 237 237 / 24%);
   }
 }
 
@@ -33,6 +45,12 @@
   --foreground: #171717;
   --header: #dcdcdc;
   --footer: #dcdcdc;
+  --text-muted: rgb(23 23 23 / 72%);
+  --text-soft: rgb(23 23 23 / 56%);
+  --text-faint: rgb(23 23 23 / 42%);
+  --line-soft: rgb(23 23 23 / 18%);
+  --surface-soft: rgb(23 23 23 / 6%);
+  --border-soft: rgb(23 23 23 / 14%);
 }
 
 [data-theme='ink'][data-mode='dark'] {
@@ -40,6 +58,12 @@
   --foreground: #ededed;
   --header: #000000;
   --footer: #000000;
+  --text-muted: rgb(237 237 237 / 78%);
+  --text-soft: rgb(237 237 237 / 62%);
+  --text-faint: rgb(237 237 237 / 45%);
+  --line-soft: rgb(237 237 237 / 26%);
+  --surface-soft: rgb(237 237 237 / 12%);
+  --border-soft: rgb(237 237 237 / 24%);
 }
 
 [data-theme='ocean'][data-mode='light'] {
@@ -47,6 +71,12 @@
   --foreground: #212842;
   --header: #f0e6d6;
   --footer: #f0e6d6;
+  --text-muted: rgb(33 40 66 / 72%);
+  --text-soft: rgb(33 40 66 / 56%);
+  --text-faint: rgb(33 40 66 / 42%);
+  --line-soft: rgb(33 40 66 / 18%);
+  --surface-soft: rgb(33 40 66 / 6%);
+  --border-soft: rgb(33 40 66 / 14%);
 }
 
 [data-theme='ocean'][data-mode='dark'] {
@@ -54,6 +84,22 @@
   --foreground: #fff8ee;
   --header: #192036;
   --footer: #192036;
+  --text-muted: rgb(255 248 238 / 78%);
+  --text-soft: rgb(255 248 238 / 62%);
+  --text-faint: rgb(255 248 238 / 45%);
+  --line-soft: rgb(255 248 238 / 26%);
+  --surface-soft: rgb(255 248 238 / 12%);
+  --border-soft: rgb(255 248 238 / 24%);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --fs-48: 36px;
+    --fs-32: 28px;
+    --fs-24: 21px;
+    --fs-18: 17px;
+    --fs-14: 15px;
+  }
 }
 
 html {

@@ -6,17 +6,17 @@ export default function Home() {
   return (
     <section className='flex min-h-[80vh] flex-col justify-center px-6 sm:px-12 lg:px-24'>
       <div className='max-w-3xl'>
-        <p className='text-foreground/40 mb-4 text-xs font-medium tracking-[0.3em] uppercase'>
+        <p className='mb-4 text-xs font-medium tracking-[0.3em] text-(--text-muted) uppercase'>
           {t('greeting')}
         </p>
 
-        <h1 className='text-foreground mb-6 text-5xl leading-[1.1] font-semibold tracking-tight sm:text-6xl lg:text-7xl'>
+        <h1 className='text-foreground mb-6 text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl lg:text-7xl'>
           {t('title')}
         </h1>
 
         <div className='bg-foreground mb-8 h-px w-16' />
 
-        <p className='text-foreground/60 max-w-xl text-lg leading-relaxed'>
+        <p className='max-w-xl text-base leading-relaxed text-(--text-soft) sm:text-lg'>
           {t('description')}
         </p>
       </div>

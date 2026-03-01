@@ -23,13 +23,13 @@ export default function Error({
       action={
         <button
           onClick={reset}
-          className='border-foreground/8 hover:border-foreground/20 hover:bg-foreground/3 inline-flex items-center gap-2.5 rounded-xl border px-6 py-3 text-sm transition-all'
+          className='inline-flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-6 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
         >
           <ArrowCounterClockwiseIcon
-            className='text-foreground/40 h-4 w-4'
+            className='h-4 w-4 text-(--text-soft)'
             weight='light'
           />
-          <span className='text-foreground/60'>{t('error.action')}</span>
+          <span className='text-(--text-muted)'>{t('error.action')}</span>
         </button>
       }
     />

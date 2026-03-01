@@ -50,9 +50,9 @@ export function SettingsPanel() {
   return (
     <div className='fixed right-4 bottom-4 z-50 flex flex-col items-end'>
       {open && (
-        <div className='border-foreground/10 bg-background mb-2 min-w-40 overflow-hidden rounded-lg border shadow-lg'>
-          <div className='border-foreground/10 border-b px-3 pt-3 pb-1'>
-            <p className='mb-1 text-xs font-medium tracking-wide uppercase opacity-40'>
+        <div className='bg-background mb-2 min-w-40 overflow-hidden rounded-lg border border-(--border-soft) shadow-lg'>
+          <div className='border-b border-(--border-soft) px-3 pt-3 pb-1'>
+            <p className='mb-1 text-xs font-medium tracking-wide text-(--text-soft) uppercase'>
               {t('mode')}
             </p>
           </div>
@@ -62,16 +62,16 @@ export function SettingsPanel() {
               onClick={() => handleModeSwitch(opt.value)}
               className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                 mode === opt.value
-                  ? 'bg-foreground/10 font-medium'
-                  : 'hover:bg-foreground/5'
+                  ? 'bg-(--surface-soft) font-medium'
+                  : 'hover:bg-(--surface-soft)'
               }`}
             >
               {opt.label}
             </button>
           ))}
 
-          <div className='border-foreground/10 border-b px-3 pt-3 pb-1'>
-            <p className='mb-1 text-xs font-medium tracking-wide uppercase opacity-40'>
+          <div className='border-b border-(--border-soft) px-3 pt-3 pb-1'>
+            <p className='mb-1 text-xs font-medium tracking-wide text-(--text-soft) uppercase'>
               {t('theme')}
             </p>
           </div>
@@ -84,16 +84,16 @@ export function SettingsPanel() {
               }}
               className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                 theme === opt.value
-                  ? 'bg-foreground/10 font-medium'
-                  : 'hover:bg-foreground/5'
+                  ? 'bg-(--surface-soft) font-medium'
+                  : 'hover:bg-(--surface-soft)'
               }`}
             >
               {opt.label}
             </button>
           ))}
 
-          <div className='border-foreground/10 border-b px-3 pt-3 pb-1'>
-            <p className='mb-1 text-xs font-medium tracking-wide uppercase opacity-40'>
+          <div className='border-b border-(--border-soft) px-3 pt-3 pb-1'>
+            <p className='mb-1 text-xs font-medium tracking-wide text-(--text-soft) uppercase'>
               {t('language')}
             </p>
           </div>
@@ -104,8 +104,8 @@ export function SettingsPanel() {
               disabled={isPending}
               className={`w-full px-3 py-2 text-left text-sm transition-colors disabled:opacity-50 ${
                 currentLocale === opt.value
-                  ? 'bg-foreground/10 font-medium'
-                  : 'hover:bg-foreground/5'
+                  ? 'bg-(--surface-soft) font-medium'
+                  : 'hover:bg-(--surface-soft)'
               }`}
             >
               {opt.label}
@@ -117,7 +117,7 @@ export function SettingsPanel() {
       <button
         onClick={() => setOpen(!open)}
         aria-label={t('toggle')}
-        className='border-foreground/20 bg-background text-foreground flex h-10 w-10 items-center justify-center rounded-full border shadow-md'
+        className='bg-background text-foreground flex h-10 w-10 items-center justify-center rounded-full border border-(--border-soft) shadow-md'
       >
         <GearSixIcon size={18} weight='light' />
       </button>
