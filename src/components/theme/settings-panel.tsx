@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition, type MouseEvent } from 'react';
+import { useEffect, useRef, useTransition, type MouseEvent } from 'react';
 import { Locale, useLocale, useTranslations } from 'next-intl';
 
 import { GearSixIcon } from '@phosphor-icons/react';
@@ -15,9 +15,10 @@ import {
 import type { Mode } from '@/lib/theme';
 
 export function SettingsPanel() {
-  const [open, , toggle] = useOpenState('settings-panel');
+  const [open, setOpen, toggle] = useOpenState('settings-panel');
   const { theme, mode, setTheme, toggleMode, themes } = useTheme();
   const t = useTranslations('common.settings');
+  const panelRef = useRef<HTMLDivElement | null>(null);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -70,8 +71,27 @@ export function SettingsPanel() {
     label: getLocaleInfo(locale).name,
   }));
 
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (panelRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [open, setOpen]);
+
   return (
-    <div className='fixed right-4 bottom-4 z-50 flex flex-col items-end'>
+    <div
+      ref={panelRef}
+      className='fixed right-4 bottom-4 z-50 flex flex-col items-end'
+    >
       {open && (
         <div className='bg-background mb-2 min-w-40 overflow-hidden rounded-lg border border-(--border-soft) shadow-lg'>
           <div className='border-b border-(--border-soft) px-3 pt-3 pb-1'>
