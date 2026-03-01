@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+
 import { MagnifyingGlassIcon, ArrowRightIcon } from '@phosphor-icons/react/ssr';
 import { Link } from '@/i18n/navigation';
 import { StatusPage } from '@/components/layout/status-page';
