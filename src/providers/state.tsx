@@ -35,8 +35,10 @@ function getState(): Record<string, boolean> {
   return state;
 }
 
+const serverSnapshot: Record<string, boolean> = {};
+
 function getServerSnapshot(): Record<string, boolean> {
-  return {};
+  return serverSnapshot;
 }
 
 function setState(next: Record<string, boolean>) {
