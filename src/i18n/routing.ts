@@ -6,6 +6,7 @@ import {
   domains,
   localeDetection,
   localePrefix,
+  pathnames,
 } from '@/config/i18n';
 
 export const routing = defineRouting({
@@ -17,4 +18,5 @@ export const routing = defineRouting({
     ...domain,
     locales: [...domain.locales],
   })),
+  pathnames,
 });

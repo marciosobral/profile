@@ -1,3 +1,5 @@
+import type { RoutePath } from './routes';
+
 export const locales = ['en-US', 'pt-BR'] as const;
 
 export const defaultLocale = 'pt-BR' as const;
@@ -13,6 +15,16 @@ export const domains = [
     locales: ['pt-BR', 'en-US'],
   },
 ] as const;
+
+type LocalizedPathname = string | Record<(typeof locales)[number], string>;
+
+export const pathnames: Record<RoutePath, LocalizedPathname> = {
+  '/': '/',
+  '/maintenance': {
+    'en-US': '/maintenance',
+    'pt-BR': '/manutencao',
+  },
+};
 
 export const localeInfo = {
   'en-US': {
