@@ -25,4 +25,10 @@ export function getLocaleInfo(locale: Locale) {
   return localeInfo[locale];
 }
 
+export async function getLocaleFromCookie(): Promise<Locale> {
+  const { cookies } = await import('next/headers');
+  const cookieStore = await cookies();
+  return normalizeLocale(cookieStore.get('NEXT_LOCALE')?.value);
+}
+
 export const localeConfig = localeInfo;
