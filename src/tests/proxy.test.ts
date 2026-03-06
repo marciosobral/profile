@@ -19,7 +19,8 @@ const messages = {
       },
       notFound: {
         title: 'Page not found',
-        subtitle: "The page you're looking for doesn't exist or has been moved.",
+        subtitle:
+          "The page you're looking for doesn't exist or has been moved.",
         action: 'Go home',
       },
     },
@@ -93,14 +94,8 @@ vi.mock('@/components/layout/status-page', () => ({
 }));
 
 vi.mock('@/i18n/navigation', () => ({
-  Link: ({
-    href,
-    children,
-    ...props
-  }: {
-    href: string;
-    children: ReactNode;
-  }) => createElement('a', { href, ...props }, children),
+  Link: ({ href, children, ...props }: { href: string; children: ReactNode }) =>
+    createElement('a', { href, ...props }, children),
 }));
 
 vi.mock('../lib/maintenance', () => ({
@@ -271,7 +266,8 @@ describe('route state pages', () => {
       {
         locale: 'en-US' as const,
         title: 'Page not found',
-        subtitle: "The page you're looking for doesn't exist or has been moved.",
+        subtitle:
+          "The page you're looking for doesn't exist or has been moved.",
         action: 'Go home',
       },
       {

@@ -37,7 +37,9 @@ function getVariableValue(block: string, variableName: string) {
 }
 
 function getThemeBlocks(source: string): ThemeBlock[] {
-  return [...source.matchAll(/\[data-theme='([^']+)'\]\[data-mode='([^']+)'\]/g)]
+  return [
+    ...source.matchAll(/\[data-theme='([^']+)'\]\[data-mode='([^']+)'\]/g),
+  ]
     .map((match) => ({
       selector: match[0],
       theme: match[1],
@@ -46,7 +48,8 @@ function getThemeBlocks(source: string): ThemeBlock[] {
     }))
     .filter(
       (block, index, blocks) =>
-        blocks.findIndex(({ selector }) => selector === block.selector) === index,
+        blocks.findIndex(({ selector }) => selector === block.selector) ===
+        index,
     );
 }
 
@@ -129,7 +132,8 @@ function contrastRatio(
 function getEffectiveContrast(block: string, variableName: string) {
   const background = parseColor(getVariableValue(block, '--background'));
   const color = parseColor(getVariableValue(block, variableName));
-  const effectiveColor = color.alpha === 1 ? color.rgb : composite(color, background);
+  const effectiveColor =
+    color.alpha === 1 ? color.rgb : composite(color, background);
 
   return {
     ratio: contrastRatio(effectiveColor, background.rgb),
@@ -158,7 +162,9 @@ describe('theme contrast tokens', () => {
       for (const variableName of readableTextVariables) {
         const { ratio } = getEffectiveContrast(block, variableName);
 
-        expect(ratio, `${selector} ${variableName}`).toBeGreaterThanOrEqual(4.5);
+        expect(ratio, `${selector} ${variableName}`).toBeGreaterThanOrEqual(
+          4.5,
+        );
         expect(theme).toBeTruthy();
         expect(mode).toMatch(/^(light|dark)$/);
       }
@@ -170,8 +176,14 @@ describe('theme contrast tokens', () => {
       const expectedAlpha = expectedAlphaByMode[mode];
 
       for (const [variableName, alpha] of Object.entries(expectedAlpha)) {
-        const { alpha: actualAlpha } = getEffectiveContrast(block, variableName);
-        expect(actualAlpha, `${selector} ${variableName}`).toBeCloseTo(alpha, 2);
+        const { alpha: actualAlpha } = getEffectiveContrast(
+          block,
+          variableName,
+        );
+        expect(actualAlpha, `${selector} ${variableName}`).toBeCloseTo(
+          alpha,
+          2,
+        );
       }
     }
   });
