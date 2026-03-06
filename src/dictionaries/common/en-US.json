@@ -2,19 +2,19 @@
   "common": {
     "metadata": {
       "title": {
-        "default": "Márcio Sobral - Full Stack Developer",
+        "default": "Márcio Sobral - Software Engineer",
         "template": "%s - Márcio Sobral"
       },
-      "description": "Full Stack Developer with 8+ years of experience building scalable, high-performance web applications.",
-      "keywords": "Full Stack Developer, React, Next.js, TypeScript, JavaScript, Node.js, Web Development, Frontend, Backend, Performance Optimization, Technical SEO, Cybersecurity, Clean Code, Scalable Applications",
+      "description": "Software Engineer with 8+ years of experience building scalable, high-performance web applications.",
+      "keywords": "Software Engineer, React, Next.js, TypeScript, JavaScript, Node.js, Web Development, Frontend, Backend, Performance Optimization, Technical SEO, Cybersecurity, Clean Code, Scalable Applications",
       "openGraph": {
-        "title": "Márcio Sobral - Full Stack Developer",
-        "description": "Full Stack Developer with 8+ years of experience building scalable, high-performance web applications.",
+        "title": "Márcio Sobral - Software Engineer",
+        "description": "Software Engineer with 8+ years of experience building scalable, high-performance web applications.",
         "type": "website"
       },
       "jsonLd": {
-        "jobTitle": "Full Stack Developer",
-        "description": "Full Stack Developer with 8+ years of experience building scalable, high-performance web applications. Strong focus on technical SEO, performance optimization, security-first development, and clean code practices. Background in Cybersecurity.",
+        "jobTitle": "Software Engineer",
+        "description": "Software Engineer with 8+ years of experience building scalable, high-performance web applications. Strong focus on technical SEO, performance optimization, security-first development, and clean code practices. Background in Cybersecurity.",
         "knowsAbout": [
           "React",
           "Next.js",

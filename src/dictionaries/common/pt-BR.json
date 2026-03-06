@@ -2,19 +2,19 @@
   "common": {
     "metadata": {
       "title": {
-        "default": "Márcio Sobral - Desenvolvedor Full Stack",
+        "default": "Márcio Sobral - Desenvolvedor de Software",
         "template": "%s - Márcio Sobral"
       },
-      "description": "Desenvolvedor Full Stack com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance.",
-      "keywords": "Desenvolvedor Full Stack, React, Next.js, TypeScript, JavaScript, Node.js, Desenvolvimento Web, Frontend, Backend, Otimização de Performance, SEO Técnico, Cibersegurança, Código Limpo, Aplicações Escaláveis",
+      "description": "Desenvolvedor de Software com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance.",
+      "keywords": "Desenvolvedor de Software, React, Next.js, TypeScript, JavaScript, Node.js, Desenvolvimento Web, Frontend, Backend, Otimização de Performance, SEO Técnico, Cibersegurança, Código Limpo, Aplicações Escaláveis",
       "openGraph": {
-        "title": "Márcio Sobral - Desenvolvedor Full Stack",
-        "description": "Desenvolvedor Full Stack com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance.",
+        "title": "Márcio Sobral - Desenvolvedor de Software",
+        "description": "Desenvolvedor de Software com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance.",
         "type": "website"
       },
       "jsonLd": {
-        "jobTitle": "Desenvolvedor Full Stack",
-        "description": "Desenvolvedor Full Stack com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance. Foco em SEO técnico, otimização de performance, desenvolvimento security-first e práticas de código limpo. Background em Cibersegurança.",
+        "jobTitle": "Desenvolvedor de Software",
+        "description": "Desenvolvedor de Software com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance. Foco em SEO técnico, otimização de performance, desenvolvimento security-first e práticas de código limpo. Background em Cibersegurança.",
         "knowsAbout": [
           "React",
           "Next.js",
