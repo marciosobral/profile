@@ -4,8 +4,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
 import { isMaintenanceActive } from './lib/maintenance';
 import { getHostFromHeaders } from './utils/host';
-import { getDomainDefaultLocale, pathnames } from './config/i18n';
-import { MAINTENANCE_ROUTE } from './config/routes';
+import {
+  getDomainDefaultLocale,
+  localePrefix,
+  pathnames,
+  type Locale,
+} from './config/i18n';
+import { MAINTENANCE_ROUTE, type RoutePath } from './config/routes';
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -16,6 +21,23 @@ function getLocalizedMaintenancePath(locale: string): string {
     (maintenancePathnames as Record<string, string>)[locale] ??
     MAINTENANCE_ROUTE
   );
+}
+
+function getLocalizedPublicPath(
+  route: RoutePath,
+  locale: Locale,
+  host: string,
+): string {
+  const localizedPath =
+    route === MAINTENANCE_ROUTE ? getLocalizedMaintenancePath(locale) : '/';
+  const isDefaultLocale = locale === getDomainDefaultLocale(host);
+
+  if (isDefaultLocale) {
+    return localizedPath;
+  }
+
+  const prefix = localePrefix.prefixes[locale];
+  return localizedPath === '/' ? prefix : `${prefix}${localizedPath}`;
 }
 
 export function proxy(request: NextRequest) {
@@ -31,29 +53,26 @@ export function proxy(request: NextRequest) {
   const url = new URL(rewriteHeader ?? request.url);
 
   const [, locale, ...rest] = url.pathname.split('/');
-  const pathWithoutLocale = '/' + rest.join('/');
-
   const host = getHostFromHeaders(request.headers);
-  const domainDefaultLocale = getDomainDefaultLocale(host);
-  const isDefaultLocale = locale === domainDefaultLocale;
-
-  const isMaintenancePath = pathWithoutLocale === MAINTENANCE_ROUTE;
+  const currentPath = request.nextUrl.pathname;
+  const maintenancePath = getLocalizedPublicPath(
+    MAINTENANCE_ROUTE,
+    locale as Locale,
+    host,
+  );
+  const homePath = getLocalizedPublicPath('/', locale as Locale, host);
+  const pathWithoutLocale = '/' + rest.join('/');
+  const isMaintenancePath =
+    currentPath === maintenancePath || pathWithoutLocale === MAINTENANCE_ROUTE;
 
   if (maintenanceActive && !isMaintenancePath) {
-    const maintenancePath = getLocalizedMaintenancePath(locale);
-    const target = isDefaultLocale
-      ? maintenancePath
-      : `/${locale}${maintenancePath}`;
-
-    return NextResponse.redirect(new URL(target, request.url), {
+    return NextResponse.redirect(new URL(maintenancePath, request.url), {
       headers: response.headers,
     });
   }
 
   if (!maintenanceActive && isMaintenancePath) {
-    const target = isDefaultLocale ? '/' : `/${locale}`;
-
-    return NextResponse.redirect(new URL(target, request.url), {
+    return NextResponse.redirect(new URL(homePath, request.url), {
       headers: response.headers,
     });
   }
