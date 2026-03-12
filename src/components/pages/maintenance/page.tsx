@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-
 import { WrenchIcon } from '@phosphor-icons/react/ssr';
+
 import { StatusPage } from '@/components/layout/status-page';
 import { socialIcons } from '@/components/ui/social-icons';
 import { getSocialLinks } from '@/config/social';
@@ -27,7 +28,7 @@ export default function Maintenance() {
           const IconComponent = socialIcons[social.name];
           const isEmail = social.url.startsWith('mailto:');
           return (
-            <a
+            <Link
               key={social.name}
               href={social.url}
               className='flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-5 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
@@ -41,7 +42,7 @@ export default function Maintenance() {
                 weight='light'
               />
               <span className='text-(--text-muted)'>{social.name}</span>
-            </a>
+            </Link>
           );
         })}
       </div>

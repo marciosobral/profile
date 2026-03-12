@@ -1,8 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import Link from 'next/link';
-
 import { MagnifyingGlassIcon, ArrowRightIcon } from '@phosphor-icons/react/ssr';
+
 import { StatusPage } from '@/components/layout/status-page';
 import { Html } from '@/components/layout/html';
 import { Body } from '@/components/layout/body';

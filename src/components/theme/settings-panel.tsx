@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useTransition, type MouseEvent } from 'react';
 import { Locale, useLocale, useTranslations } from 'next-intl';
+import { GearSixIcon } from '@phosphor-icons/react/ssr';
 
-import { GearSixIcon } from '@phosphor-icons/react';
 import { useTheme } from '@/hooks/use-theme';
 import { useOpenState } from '@/hooks/use-open-state';
 import { usePathname, useRouter } from '@/i18n/navigation';

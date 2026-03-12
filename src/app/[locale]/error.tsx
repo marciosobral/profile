@@ -4,7 +4,8 @@ import { useTranslations } from 'next-intl';
 import {
   WarningCircleIcon,
   ArrowCounterClockwiseIcon,
-} from '@phosphor-icons/react';
+} from '@phosphor-icons/react/ssr';
+
 import { StatusPage } from '@/components/layout/status-page';
 
 export default function Error({

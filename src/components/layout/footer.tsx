@@ -1,11 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTransition } from 'react';
-import { GlobeIcon } from '@phosphor-icons/react';
+import { GlobeIcon } from '@phosphor-icons/react/ssr';
 
-import { Link, usePathname, useRouter } from '@/i18n/navigation';
+import { Link as NavLink, usePathname, useRouter } from '@/i18n/navigation';
 import { siteConfig } from '@/config/site';
 import { getSocialLinks } from '@/config/social';
 import { socialIcons } from '@/components/ui/social-icons';
@@ -48,7 +49,7 @@ export function Footer() {
               {getSocialLinks('footer').map((social) => {
                 const IconComponent = socialIcons[social.name];
                 return (
-                  <a
+                  <Link
                     key={social.name}
                     href={social.url}
                     target='_blank'
@@ -57,25 +58,25 @@ export function Footer() {
                     className='hover:text-foreground text-(--text-soft) transition-colors'
                   >
                     <IconComponent size={22} weight='fill' />
-                  </a>
+                  </Link>
                 );
               })}
             </div>
           </div>
 
           <div className='flex flex-col items-center gap-3 pt-0 pb-6 sm:flex-row sm:gap-6 sm:pt-6'>
-            <Link
+            <NavLink
               href='/'
               className='hover:text-foreground text-sm text-(--text-soft) transition-colors'
             >
               {t('footer.home')}
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               href='/cookies'
               className='hover:text-foreground text-sm text-(--text-soft) transition-colors'
             >
               {t('footer.cookies')}
-            </Link>
+            </NavLink>
             {/* <a
               href={getEmailUrl()}
               className='rounded-full border border-(--border-soft) px-4 py-1.5 text-sm transition-colors hover:bg-(--surface-soft)'
