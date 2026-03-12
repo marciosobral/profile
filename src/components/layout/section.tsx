@@ -6,7 +6,13 @@ type SectionProps = ComponentPropsWithoutRef<'section'>;
 
 export function Section({ children, className, ...props }: SectionProps) {
   return (
-    <section className={cn('relative w-full', className)} {...props}>
+    <section
+      className={cn(
+        'bg-background text-foreground relative flex w-full items-center justify-center',
+        className,
+      )}
+      {...props}
+    >
       {children}
     </section>
   );

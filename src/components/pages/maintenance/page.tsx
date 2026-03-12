@@ -16,9 +16,8 @@ export default function Maintenance() {
       icon={<WrenchIcon className='h-12 w-12' weight='thin' />}
       title={t('maintenance.title')}
       subtitle={t('maintenance.subtitle')}
-      // footer={t('common.footer.rights')}
     >
-      <div className='mx-auto mb-10 flex w-16 items-center gap-2'>
+      <div className='mb-10 flex w-16 items-center gap-2'>
         <div className='h-px flex-1 bg-(--line-soft)' />
       </div>
 
