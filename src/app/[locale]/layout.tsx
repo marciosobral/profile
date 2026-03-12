@@ -16,6 +16,7 @@ import { Main } from '@/components/layout/main';
 import { StateProvider } from '@/providers/state';
 import { ThemeProvider } from '@/providers/theme';
 import { SettingsPanel } from '@/components/theme/settings-panel';
+import { Footer } from '@/components/layout/footer';
 import { JsonLd } from '@/components/seo/json-ld';
 
 interface LocaleLayoutProps {
@@ -70,6 +71,7 @@ export default async function LocaleLayout({
           <StateProvider>
             <ThemeProvider>
               <Main>{children}</Main>
+              <Footer />
               <SettingsPanel />
             </ThemeProvider>
           </StateProvider>

@@ -2,6 +2,7 @@ import { siteConfig } from '@/config/site';
 import { getUrl } from '@/utils/host';
 import type { Locale } from '@/config/i18n';
 import { getRawMetadata } from '@/lib/metadata';
+import { socialConfig } from '@/config/social';
 
 interface JsonLdProps {
   locale: Locale;
@@ -21,7 +22,9 @@ export async function JsonLd({ locale }: JsonLdProps) {
     description: jsonLdData?.description,
     url,
     knowsAbout: jsonLdData?.knowsAbout,
-    sameAs: siteConfig.socialLinks,
+    sameAs: socialConfig
+      .filter((config) => config.visibility?.jsonLd)
+      .map((config) => config.url),
   };
 
   const webSiteSchema = {

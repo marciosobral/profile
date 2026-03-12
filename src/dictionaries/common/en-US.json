@@ -38,7 +38,10 @@
       "contact": "Contact"
     },
     "footer": {
-      "rights": "All rights reserved."
+      "rights": "All rights reserved",
+      "home": "Home",
+      "cookies": "Cookie Policy",
+      "contact": "Hit me up"
     },
     "error": {
       "title": "Something went wrong",

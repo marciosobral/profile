@@ -8,7 +8,7 @@ export function Content({ children, className, ...props }: ContentProps) {
   return (
     <div
       className={cn(
-        'relative mx-auto flex h-full w-full max-w-6xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16',
+        'relative mx-auto flex h-full w-full max-w-6xl flex-col items-center justify-center px-4 py-16 sm:px-6 lg:px-8',
         className,
       )}
       {...props}

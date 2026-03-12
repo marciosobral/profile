@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { siteConfig } from '@/config/site';
+import { getEmailUrl } from '@/config/social';
 
 import { Page } from '@/components/layout/page';
 import { Section } from '@/components/layout/section';
@@ -81,7 +81,9 @@ export default function CookiePolicy() {
                 {t('contact.title')}
               </h2>
               <p className='text-base leading-relaxed text-(--text-soft)'>
-                {t('contact.description', { email: siteConfig.email })}
+                {t('contact.description', {
+                  email: getEmailUrl().replace('mailto:', ''),
+                })}
               </p>
             </div>
           </div>

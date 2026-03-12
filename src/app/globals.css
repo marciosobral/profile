@@ -8,7 +8,7 @@
   --text-muted: rgb(23 23 23 / 72%);
   --text-soft: rgb(23 23 23 / 70%);
   --text-faint: rgb(23 23 23 / 42%);
-  --line-soft: rgb(23 23 23 / 18%);
+  --line-soft: rgb(23 23 23 / 5%);
   --surface-soft: rgb(23 23 23 / 6%);
   --border-soft: rgb(23 23 23 / 14%);
 
@@ -34,7 +34,7 @@
     --text-muted: rgb(237 237 237 / 78%);
     --text-soft: rgb(237 237 237 / 62%);
     --text-faint: rgb(237 237 237 / 45%);
-    --line-soft: rgb(237 237 237 / 26%);
+    --line-soft: rgb(237 237 237 / 8%);
     --surface-soft: rgb(237 237 237 / 12%);
     --border-soft: rgb(237 237 237 / 24%);
   }
@@ -48,7 +48,7 @@
   --text-muted: rgb(23 23 23 / 72%);
   --text-soft: rgb(23 23 23 / 70%);
   --text-faint: rgb(23 23 23 / 42%);
-  --line-soft: rgb(23 23 23 / 18%);
+  --line-soft: rgb(23 23 23 / 5%);
   --surface-soft: rgb(23 23 23 / 6%);
   --border-soft: rgb(23 23 23 / 14%);
 }
@@ -61,7 +61,7 @@
   --text-muted: rgb(237 237 237 / 78%);
   --text-soft: rgb(237 237 237 / 62%);
   --text-faint: rgb(237 237 237 / 45%);
-  --line-soft: rgb(237 237 237 / 26%);
+  --line-soft: rgb(237 237 237 / 8%);
   --surface-soft: rgb(237 237 237 / 12%);
   --border-soft: rgb(237 237 237 / 24%);
 }
@@ -74,7 +74,7 @@
   --text-muted: rgb(33 40 66 / 72%);
   --text-soft: rgb(33 40 66 / 70%);
   --text-faint: rgb(33 40 66 / 42%);
-  --line-soft: rgb(33 40 66 / 18%);
+  --line-soft: rgb(33 40 66 / 5%);
   --surface-soft: rgb(33 40 66 / 6%);
   --border-soft: rgb(33 40 66 / 14%);
 }
@@ -87,7 +87,7 @@
   --text-muted: rgb(255 248 238 / 78%);
   --text-soft: rgb(255 248 238 / 62%);
   --text-faint: rgb(255 248 238 / 45%);
-  --line-soft: rgb(255 248 238 / 26%);
+  --line-soft: rgb(255 248 238 / 5%);
   --surface-soft: rgb(255 248 238 / 12%);
   --border-soft: rgb(255 248 238 / 24%);
 }

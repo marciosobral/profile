@@ -9,6 +9,7 @@ import { Body } from '@/components/layout/body';
 import { Main } from '@/components/layout/main';
 import { StateProvider } from '@/providers/state';
 import { ThemeProvider } from '@/providers/theme';
+import { Footer } from '@/components/layout/footer';
 import { SettingsPanel } from '@/components/theme/settings-panel';
 
 export default async function RootNotFound() {
@@ -43,6 +44,7 @@ export default async function RootNotFound() {
                   }
                 />
               </Main>
+              <Footer />
               <SettingsPanel />
             </ThemeProvider>
           </StateProvider>
