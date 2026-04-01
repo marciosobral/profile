@@ -31,7 +31,7 @@ export function StatusPage({
     <Page className='min-h-screen'>
       <Header showBack={showBack} />
       <Section className='flex-1'>
-        <Content className='max-w-lg text-center'>
+        <Content className='max-w-lg pt-0 text-center'>
           <AnimatedGroup>
             <div className='mb-8 flex justify-center text-(--text-faint)'>
               {icon}
