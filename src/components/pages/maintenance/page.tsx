@@ -1,13 +1,15 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { WrenchIcon } from '@phosphor-icons/react/ssr';
 
 import { StatusPage } from '@/components/layout/status-page';
 import { socialIcons } from '@/components/ui/social-icons';
 import { getSocialLinks } from '@/config/social';
+import { type Locale } from '@/config/i18n';
 
 export default function Maintenance() {
   const t = useTranslations();
+  const locale = useLocale() as Locale;
 
   return (
     <StatusPage
@@ -24,7 +26,7 @@ export default function Maintenance() {
       </p>
 
       <div className='flex justify-center gap-4'>
-        {getSocialLinks('maintenance').map((social) => {
+        {getSocialLinks('maintenance', locale).map((social) => {
           const IconComponent = socialIcons[social.name];
           const isEmail = social.url.startsWith('mailto:');
           return (

@@ -46,7 +46,7 @@ export function Footer() {
               className={`h-8 w-auto ${mode === 'dark' ? 'invert' : ''}`}
             />
             <div className='flex items-center gap-2'>
-              {getSocialLinks('footer').map((social) => {
+              {getSocialLinks('footer', locale).map((social) => {
                 const IconComponent = socialIcons[social.name];
                 return (
                   <Link
@@ -78,7 +78,7 @@ export function Footer() {
               {t('footer.cookies')}
             </NavLink>
             {/* <a
-              href={getEmailUrl()}
+              href={getEmailUrl(locale)}
               className='rounded-full border border-(--border-soft) px-4 py-1.5 text-sm transition-colors hover:bg-(--surface-soft)'
             >
               {t('footer.contact')}

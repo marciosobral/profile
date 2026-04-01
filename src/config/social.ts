@@ -1,3 +1,5 @@
+import type { Locale } from '@/config/i18n';
+
 export enum SocialPlatform {
   GitHub = 'GitHub',
   LinkedIn = 'LinkedIn',
@@ -6,13 +8,17 @@ export enum SocialPlatform {
 
 export type SocialConfigProps = {
   name: SocialPlatform;
-  url: string;
+  url: string | Record<Locale, string>;
   visibility?: {
     jsonLd?: boolean;
     contactForm?: boolean;
     maintenance?: boolean;
     footer?: boolean;
   };
+};
+
+export type ResolvedSocialConfig = Omit<SocialConfigProps, 'url'> & {
+  url: string;
 };
 
 export const socialConfig: SocialConfigProps[] = [
@@ -38,7 +44,10 @@ export const socialConfig: SocialConfigProps[] = [
   },
   {
     name: SocialPlatform.Email,
-    url: 'mailto:contato@marciosobral.net',
+    url: {
+      'en-US': 'mailto:hello@marciosobral.net',
+      'pt-BR': 'mailto:contato@marciosobral.com.br',
+    },
     visibility: {
       jsonLd: false,
       contactForm: true,
@@ -52,13 +61,23 @@ export type SocialConfig = SocialConfigProps;
 
 type VisibilityContext = keyof NonNullable<SocialConfigProps['visibility']>;
 
-export function getSocialLinks(
-  context: VisibilityContext,
-): SocialConfigProps[] {
-  return socialConfig.filter((s) => s.visibility?.[context]);
+function resolveUrl(
+  url: string | Record<Locale, string>,
+  locale: Locale,
+): string {
+  return typeof url === 'string' ? url : url[locale];
 }
 
-export function getEmailUrl(): string {
+export function getSocialLinks(
+  context: VisibilityContext,
+  locale: Locale,
+): ResolvedSocialConfig[] {
+  return socialConfig
+    .filter((s) => s.visibility?.[context])
+    .map((s) => ({ ...s, url: resolveUrl(s.url, locale) }));
+}
+
+export function getEmailUrl(locale: Locale): string {
   const email = socialConfig.find((s) => s.name === SocialPlatform.Email);
-  return email?.url ?? '';
+  return email ? resolveUrl(email.url, locale) : '';
 }

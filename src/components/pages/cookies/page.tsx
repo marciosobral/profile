@@ -1,5 +1,6 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { getEmailUrl } from '@/config/social';
+import { type Locale } from '@/config/i18n';
 
 import { Page } from '@/components/layout/page';
 import { Section } from '@/components/layout/section';
@@ -8,6 +9,7 @@ import { AnimatedGroup } from '@/components/ui/animated-group';
 
 export default function CookiePolicy() {
   const t = useTranslations('cookies');
+  const locale = useLocale() as Locale;
 
   return (
     <Page>
@@ -85,7 +87,7 @@ export default function CookiePolicy() {
               </h2>
               <p className='text-base leading-relaxed text-(--text-soft)'>
                 {t('contact.description', {
-                  email: getEmailUrl().replace('mailto:', ''),
+                  email: getEmailUrl(locale).replace('mailto:', ''),
                 })}
               </p>
             </div>
