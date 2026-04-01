@@ -18,6 +18,7 @@ export default function Error({
 
   return (
     <StatusPage
+      showBack={false}
       icon={<WarningCircleIcon className='h-12 w-12' weight='thin' />}
       title={t('error.title')}
       subtitle={t('error.subtitle')}

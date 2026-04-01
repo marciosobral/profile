@@ -6,6 +6,7 @@ import { Page } from '@/components/layout/page';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
 import { AnimatedGroup } from '@/components/ui/animated-group';
+import { Header } from '@/components/layout/header';
 
 interface StatusPageProps {
   icon: ReactNode;
@@ -14,6 +15,7 @@ interface StatusPageProps {
   action?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
+  showBack?: boolean;
 }
 
 export function StatusPage({
@@ -23,11 +25,13 @@ export function StatusPage({
   action,
   children,
   footer,
+  showBack = true,
 }: StatusPageProps) {
   return (
-    <Page>
-      <Section>
-        <Content className='min-h-screen max-w-lg text-center'>
+    <Page className='min-h-screen'>
+      <Header showBack={showBack} />
+      <Section className='flex-1'>
+        <Content className='max-w-lg text-center'>
           <AnimatedGroup>
             <div className='mb-8 flex justify-center text-(--text-faint)'>
               {icon}

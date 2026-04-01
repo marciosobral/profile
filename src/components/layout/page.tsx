@@ -1,3 +1,12 @@
-export function Page({ children }: { children: React.ReactNode }) {
-  return <div className='relative flex flex-col'>{children}</div>;
+import { cn } from '@/utils/cn';
+
+interface PageProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function Page({ children, className }: PageProps) {
+  return (
+    <div className={cn('relative flex flex-col', className)}>{children}</div>
+  );
 }

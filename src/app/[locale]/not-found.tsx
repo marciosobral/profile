@@ -9,6 +9,7 @@ export default function NotFound() {
 
   return (
     <StatusPage
+      showBack={false}
       icon={<MagnifyingGlassIcon className='h-12 w-12' weight='thin' />}
       title={t('notFound.title')}
       subtitle={t('notFound.subtitle')}

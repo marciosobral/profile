@@ -7,6 +7,7 @@ import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
 import { AnimatedGroup } from '@/components/ui/animated-group';
 import { AnimatedText } from '@/components/ui/animated-text';
+import { Header } from '@/components/layout/header';
 
 export default function CookiePolicy() {
   const t = useTranslations('cookies');
@@ -14,8 +15,9 @@ export default function CookiePolicy() {
 
   return (
     <Page>
+      <Header />
       <Section>
-        <Content className='items-start'>
+        <Content className='items-start pt-6'>
           <AnimatedGroup>
             <p className='mb-4 text-xs font-medium tracking-[0.3em] text-(--text-muted) uppercase'>
               {t('lastUpdated')}

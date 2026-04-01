@@ -16,6 +16,7 @@ export default function Maintenance() {
       icon={<WrenchIcon className='h-12 w-12' weight='thin' />}
       title={t('maintenance.title')}
       subtitle={t('maintenance.subtitle')}
+      showBack={false}
     >
       <div className='bg-foreground mx-auto mb-10 h-px w-16' />
 

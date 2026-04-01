@@ -25,6 +25,7 @@ export default async function RootNotFound() {
               <ThemeProvider>
                 <Main>
                   <StatusPage
+                    showBack={false}
                     icon={
                       <MagnifyingGlassIcon
                         className='h-12 w-12'
