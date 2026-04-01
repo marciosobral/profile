@@ -3,12 +3,13 @@
 import {
   createContext,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
   type ReactNode,
 } from 'react';
+
+import { useMountEffect } from '@/hooks/use-mount-effect';
 
 type AnimationMode = 'page-load' | 'transition';
 
@@ -44,13 +45,13 @@ export function AnimationProvider({ children }: { children: ReactNode }) {
     }, 2000);
   }, []);
 
-  useEffect(() => {
+  useMountEffect(() => {
     return () => {
       if (resetTimerRef.current) {
         clearTimeout(resetTimerRef.current);
       }
     };
-  }, []);
+  });
 
   const getDelay = useCallback(
     (order: number) => BASE_DELAYS[mode] + order * STAGGER_OFFSET,

@@ -1,12 +1,8 @@
 'use client';
 
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useState,
-  type ReactNode,
-} from 'react';
+import { createContext, useCallback, useState, type ReactNode } from 'react';
+
+import { useMountEffect } from '@/hooks/use-mount-effect';
 
 import {
   themes,
@@ -65,13 +61,11 @@ function applyAttributes(theme: Theme, mode: Mode) {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(defaultTheme);
   const [mode, setModeState] = useState<Mode>(defaultMode);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
+  useMountEffect(() => {
     setThemeState(getInitialTheme());
     setModeState(getInitialMode());
-    setMounted(true);
-  }, []);
+  });
 
   const setTheme = useCallback(
     (newTheme: Theme, origin?: TransitionOrigin) => {
@@ -97,13 +91,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     },
     [theme, mode],
   );
-
-  useEffect(() => {
-    if (!mounted) return;
-    setCookie(THEME_COOKIE, theme);
-    setCookie(MODE_COOKIE, mode);
-    applyAttributes(theme, mode);
-  }, [mounted, theme, mode]);
 
   return (
     <ThemeContext.Provider
