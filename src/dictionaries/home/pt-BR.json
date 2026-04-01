@@ -2,6 +2,9 @@
   "home": {
     "greeting": "Desenvolvedor de Software",
     "title": "Márcio Sobral",
-    "description": "Desenvolvedor de Software com mais de 8 anos de experiência construindo aplicações web escaláveis e de alta performance."
+    "description": "Atualmente desenvolvendo <project>?</project>.",
+    "project": {
+      "link": "#"
+    }
   }
 }

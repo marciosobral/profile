@@ -53,6 +53,12 @@
       "subtitle": "A página que você procura não existe ou foi movida.",
       "action": "Ir para o início"
     },
+    "social": {
+      "resume": "Currículo",
+      "portfolio": "Portfólio",
+      "copy": "Copiar",
+      "copied": "Copiado!"
+    },
     "settings": {
       "theme": "Tema",
       "mode": "Modo",

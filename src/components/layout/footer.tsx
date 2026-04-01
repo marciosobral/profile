@@ -1,15 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTransition } from 'react';
 import { GlobeIcon } from '@phosphor-icons/react/ssr';
 
 import { Link as NavLink, usePathname, useRouter } from '@/i18n/navigation';
-import { siteConfig } from '@/config/site';
-import { getSocialLinks } from '@/config/social';
-import { socialIcons } from '@/components/ui/social-icons';
 import { type Locale } from '@/config/i18n';
 import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
 import { useTheme } from '@/hooks/use-theme';
@@ -17,7 +12,7 @@ import { flagLoaderSkip } from '@/lib/loader-state';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
 
-import LogoSvg from '@assets/logos/last-name.svg';
+// import LogoSvg from '@assets/logos/last-name.svg';
 
 export function Footer() {
   const t = useTranslations('common');

@@ -53,6 +53,12 @@
       "subtitle": "The page you're looking for doesn't exist or has been moved.",
       "action": "Go home"
     },
+    "social": {
+      "resume": "Resume",
+      "portfolio": "Portfolio",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
     "settings": {
       "theme": "Theme",
       "mode": "Mode",

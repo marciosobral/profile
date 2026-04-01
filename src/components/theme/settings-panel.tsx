@@ -6,9 +6,7 @@ import { GearSixIcon } from '@phosphor-icons/react/ssr';
 
 import { useTheme } from '@/hooks/use-theme';
 import { useOpenState } from '@/hooks/use-open-state';
-import {
-  type TransitionOrigin,
-} from '@/lib/theme/radial-reveal';
+import { type TransitionOrigin } from '@/lib/theme/radial-reveal';
 import type { Mode } from '@/lib/theme';
 
 export function SettingsPanel() {
@@ -105,7 +103,6 @@ export function SettingsPanel() {
               {opt.label}
             </button>
           ))}
-
         </div>
       )}
 

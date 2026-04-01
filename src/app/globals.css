@@ -170,6 +170,19 @@ html {
   }
 }
 
+@keyframes bounce-once {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -210,6 +223,10 @@ html {
 
   .loader-logo {
     animation: loader-logo-fade 300ms ease-out 400ms both;
+  }
+
+  .animate-bounce-once {
+    animation: bounce-once 300ms ease-out;
   }
 
   .animate-fade-up {
