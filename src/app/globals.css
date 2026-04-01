@@ -29,8 +29,8 @@
   :root:not([data-mode]) {
     --background: #171717;
     --foreground: #ededed;
-    --header: #000000;
-    --footer: #000000;
+    --header: #111111;
+    --footer: #111111;
     --text-muted: rgb(237 237 237 / 78%);
     --text-soft: rgb(237 237 237 / 62%);
     --text-faint: rgb(237 237 237 / 45%);
@@ -56,8 +56,8 @@
 [data-theme='ink'][data-mode='dark'] {
   --background: #171717;
   --foreground: #ededed;
-  --header: #000000;
-  --footer: #000000;
+  --header: #111111;
+  --footer: #111111;
   --text-muted: rgb(237 237 237 / 78%);
   --text-soft: rgb(237 237 237 / 62%);
   --text-faint: rgb(237 237 237 / 45%);
