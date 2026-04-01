@@ -21,12 +21,12 @@ export const domains = [
   {
     domain: 'marciosobral.com.br',
     defaultLocale: 'pt-BR',
-    locales: ['pt-BR', 'en-US'],
+    locales: ['pt-BR'],
   },
   {
     domain: 'marciosobral.net',
     defaultLocale: 'en-US',
-    locales: ['pt-BR', 'en-US'],
+    locales: ['en-US'],
   },
 ] satisfies DomainsConfig<typeof locales>;
 
