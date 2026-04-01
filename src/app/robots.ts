@@ -7,7 +7,7 @@ import {
   pathnames,
 } from '@/config/i18n';
 import { excludedRoutes } from '@/config/routes';
-import { getUrl } from '@/utils/host';
+import { getUrl, isPreviewDeployment } from '@/utils/host';
 
 function getLocalizedPaths(routePath: string, defaultLocale: string): string[] {
   const localized = pathnames[routePath as keyof typeof pathnames];
@@ -25,7 +25,17 @@ function getLocalizedPaths(routePath: string, defaultLocale: string): string[] {
 }
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-  const baseUrl = await getUrl();
+  const [baseUrl, preview] = await Promise.all([
+    getUrl(),
+    isPreviewDeployment(),
+  ]);
+
+  if (preview) {
+    return {
+      rules: [{ userAgent: '*', disallow: ['/'] }],
+    };
+  }
+
   const host = new URL(baseUrl).host;
   const domainDefaultLocale = getDomainDefaultLocale(host);
   const disallowPaths = excludedRoutes.flatMap((routePath) =>

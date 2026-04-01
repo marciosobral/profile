@@ -20,3 +20,10 @@ export async function getUrl(): Promise<string> {
 
   return `${protocol}://${host}`;
 }
+
+export async function isPreviewDeployment(): Promise<boolean> {
+  const headersList = await headers();
+  const host = getHostFromHeaders(headersList);
+
+  return host.endsWith('.vercel.app') || host.startsWith('preview.');
+}
