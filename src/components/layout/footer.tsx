@@ -39,7 +39,7 @@ export function Footer() {
 
   return (
     <footer className='sticky bottom-0 bg-(--footer-color)'>
-      <Section>
+      {/* <Section>
         <Content className='justify-between gap-3 py-3 sm:flex-row sm:gap-6'>
           <div className='flex flex-col items-center gap-4 py-6 sm:items-start'>
             <Image
@@ -79,22 +79,30 @@ export function Footer() {
             >
               {t('footer.cookies')}
             </NavLink>
-            {/* <a
+            <a
               href={getEmailUrl(locale)}
               className='rounded-full border border-(--border-soft) px-4 py-1.5 text-sm transition-colors hover:bg-(--surface-soft)'
             >
               {t('footer.contact')}
-            </a> */}
+            </a>
           </div>
         </Content>
-      </Section>
+      </Section> */}
 
       <div className='h-px w-full bg-(--line-soft)' />
 
       <Section>
-        <Content className='flex-col-reverse justify-between gap-3 py-4 sm:flex-row sm:gap-6 sm:py-6'>
-          <p className='text-sm text-(--text-faint)'>
-            &copy; 2026 &middot; {t('footer.rights')}
+        <Content className='flex-col justify-between gap-3 py-4 sm:flex-row sm:gap-6 sm:py-6'>
+          <p className='text-center text-sm text-(--text-faint)'>
+            &copy; 2026 &middot; {''}
+            {t('footer.rights')} {''}
+            &middot; {''}
+            <NavLink
+              href='/cookies'
+              className='hover:text-foreground text-sm text-nowrap text-(--text-soft) transition-colors'
+            >
+              {t('footer.cookies')}
+            </NavLink>
           </p>
 
           <div className='flex items-center gap-6'>
