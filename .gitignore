@@ -54,5 +54,6 @@ yarn.lock
 *.localhistory
 docs/
 .worktrees/
+.firecrawl/
 
 # End of file

@@ -6,6 +6,8 @@ import { GearSixIcon } from '@phosphor-icons/react/ssr';
 
 import { useTheme } from '@/hooks/use-theme';
 import { useOpenState } from '@/hooks/use-open-state';
+import { useAnimation } from '@/hooks/use-animation';
+import { flagLoaderSkip } from '@/lib/loader-state';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
 import {
@@ -19,12 +21,12 @@ export function SettingsPanel() {
   const { theme, mode, setTheme, toggleMode, themes } = useTheme();
   const t = useTranslations('common.settings');
   const panelRef = useRef<HTMLDivElement | null>(null);
-
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale() as Locale;
   const [isPending, startTransition] = useTransition();
   const availableLocales = getAvailableLocales();
+  const { setTransitionMode } = useAnimation();
 
   const getTransitionOrigin = (
     event: MouseEvent<HTMLButtonElement>,
@@ -38,6 +40,9 @@ export function SettingsPanel() {
     event: MouseEvent<HTMLButtonElement>,
   ) => {
     if (newLocale === currentLocale || isPending) return;
+
+    flagLoaderSkip();
+    setTransitionMode();
 
     const origin = getTransitionOrigin(event);
     startTransition(() => {

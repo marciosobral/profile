@@ -4,6 +4,7 @@ import { getEmailUrl } from '@/config/social';
 import { Page } from '@/components/layout/page';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
+import { AnimatedGroup } from '@/components/ui/animated-group';
 
 export default function CookiePolicy() {
   const t = useTranslations('cookies');
@@ -12,19 +13,21 @@ export default function CookiePolicy() {
     <Page>
       <Section>
         <Content className='items-start'>
-          <p className='mb-4 text-xs font-medium tracking-[0.3em] text-(--text-muted) uppercase'>
-            {t('lastUpdated')}
-          </p>
+          <AnimatedGroup>
+            <p className='mb-4 text-xs font-medium tracking-[0.3em] text-(--text-muted) uppercase'>
+              {t('lastUpdated')}
+            </p>
 
-          <h1 className='text-foreground mb-6 text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl'>
-            {t('title')}
-          </h1>
+            <h1 className='text-foreground mb-6 text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl'>
+              {t('title')}
+            </h1>
 
-          <div className='bg-foreground mb-8 h-px w-16' />
+            <div className='bg-foreground mb-8 h-px w-16' />
 
-          <p className='mb-12 text-base leading-relaxed text-(--text-soft) sm:text-lg'>
-            {t('intro')}
-          </p>
+            <p className='mb-12 text-base leading-relaxed text-(--text-soft) sm:text-lg'>
+              {t('intro')}
+            </p>
+          </AnimatedGroup>
 
           <div className='space-y-10'>
             <div>
