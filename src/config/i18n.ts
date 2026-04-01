@@ -23,6 +23,11 @@ export const domains = [
     defaultLocale: 'pt-BR',
     locales: ['pt-BR', 'en-US'],
   },
+  {
+    domain: 'marciosobral.net',
+    defaultLocale: 'en-US',
+    locales: ['pt-BR', 'en-US'],
+  },
 ] satisfies DomainsConfig<typeof locales>;
 
 function normalizeHost(value: string) {
