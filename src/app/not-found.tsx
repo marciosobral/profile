@@ -8,6 +8,7 @@ import { Html } from '@/components/layout/html';
 import { Body } from '@/components/layout/body';
 import { Main } from '@/components/layout/main';
 import { StateProvider } from '@/providers/state';
+import { AnimationProvider } from '@/providers/animation';
 import { ThemeProvider } from '@/providers/theme';
 import { Footer } from '@/components/layout/footer';
 import { SettingsPanel } from '@/components/theme/settings-panel';
@@ -20,33 +21,38 @@ export default async function RootNotFound() {
       <Body>
         <NextIntlClientProvider>
           <StateProvider>
-            <ThemeProvider>
-              <Main>
-                <StatusPage
-                  icon={
-                    <MagnifyingGlassIcon className='h-12 w-12' weight='thin' />
-                  }
-                  title={t('notFound.title')}
-                  subtitle={t('notFound.subtitle')}
-                  action={
-                    <Link
-                      href='/'
-                      className='inline-flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-6 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
-                    >
-                      <span className='text-(--text-muted)'>
-                        {t('notFound.action')}
-                      </span>
-                      <ArrowRightIcon
-                        className='h-4 w-4 text-(--text-soft)'
-                        weight='light'
+            <AnimationProvider>
+              <ThemeProvider>
+                <Main>
+                  <StatusPage
+                    icon={
+                      <MagnifyingGlassIcon
+                        className='h-12 w-12'
+                        weight='thin'
                       />
-                    </Link>
-                  }
-                />
-              </Main>
-              <Footer />
-              <SettingsPanel />
-            </ThemeProvider>
+                    }
+                    title={t('notFound.title')}
+                    subtitle={t('notFound.subtitle')}
+                    action={
+                      <Link
+                        href='/'
+                        className='inline-flex items-center gap-2.5 rounded-xl border border-(--border-soft) px-6 py-3 text-sm transition-all hover:border-(--line-soft) hover:bg-(--surface-soft)'
+                      >
+                        <span className='text-(--text-muted)'>
+                          {t('notFound.action')}
+                        </span>
+                        <ArrowRightIcon
+                          className='h-4 w-4 text-(--text-soft)'
+                          weight='light'
+                        />
+                      </Link>
+                    }
+                  />
+                </Main>
+                <Footer />
+                <SettingsPanel />
+              </ThemeProvider>
+            </AnimationProvider>
           </StateProvider>
         </NextIntlClientProvider>
       </Body>
