@@ -1,16 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useTransition, type MouseEvent } from 'react';
-import { Locale, useLocale, useTranslations } from 'next-intl';
+import { useEffect, useRef, type MouseEvent } from 'react';
+import { useTranslations } from 'next-intl';
 import { GearSixIcon } from '@phosphor-icons/react/ssr';
 
 import { useTheme } from '@/hooks/use-theme';
 import { useOpenState } from '@/hooks/use-open-state';
-import { flagLoaderSkip } from '@/lib/loader-state';
-import { usePathname, useRouter } from '@/i18n/navigation';
-import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
 import {
-  runRadialRevealTransition,
   type TransitionOrigin,
 } from '@/lib/theme/radial-reveal';
 import type { Mode } from '@/lib/theme';
@@ -20,11 +16,6 @@ export function SettingsPanel() {
   const { theme, mode, setTheme, toggleMode, themes } = useTheme();
   const t = useTranslations('common.settings');
   const panelRef = useRef<HTMLDivElement | null>(null);
-  const router = useRouter();
-  const pathname = usePathname();
-  const currentLocale = useLocale() as Locale;
-  const [isPending, startTransition] = useTransition();
-  const availableLocales = getAvailableLocales();
 
   const getTransitionOrigin = (
     event: MouseEvent<HTMLButtonElement>,
@@ -32,22 +23,6 @@ export function SettingsPanel() {
     x: event.clientX,
     y: event.clientY,
   });
-
-  const handleLocaleSwitch = (
-    newLocale: Locale,
-    event: MouseEvent<HTMLButtonElement>,
-  ) => {
-    if (newLocale === currentLocale || isPending) return;
-
-    flagLoaderSkip();
-
-    const origin = getTransitionOrigin(event);
-    startTransition(() => {
-      runRadialRevealTransition(() => {
-        router.replace(pathname, { locale: newLocale });
-      }, origin);
-    });
-  };
 
   const handleModeSwitch = (
     newMode: Mode,
@@ -66,11 +41,6 @@ export function SettingsPanel() {
   const themeOptions = themes.map((th) => ({
     value: th,
     label: th.charAt(0).toUpperCase() + th.slice(1),
-  }));
-
-  const localeOptions = availableLocales.map((locale) => ({
-    value: locale,
-    label: getLocaleInfo(locale).name,
   }));
 
   useEffect(() => {
@@ -136,25 +106,6 @@ export function SettingsPanel() {
             </button>
           ))}
 
-          <div className='border-b border-(--border-soft) px-3 pt-3 pb-1'>
-            <p className='mb-1 text-xs font-medium tracking-wide text-(--text-soft) uppercase'>
-              {t('language')}
-            </p>
-          </div>
-          {localeOptions.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={(event) => handleLocaleSwitch(opt.value, event)}
-              disabled={isPending}
-              className={`w-full px-3 py-2 text-left text-sm transition-colors disabled:opacity-50 ${
-                currentLocale === opt.value
-                  ? 'bg-(--surface-soft) font-medium'
-                  : 'hover:bg-(--surface-soft)'
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
         </div>
       )}
 
