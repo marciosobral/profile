@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { siteConfig } from '@/config/site';
+import { getUrl } from '@/utils/host';
 import type { Locale } from '@/config/i18n';
 import type { Namespace } from '@/config/namespaces';
 import type { RawMetadata } from '@/types/metadata';
@@ -21,8 +22,10 @@ export async function generateMetadata(
   locale?: string,
 ): Promise<Metadata> {
   const meta = await getRawMetadata(namespace, locale);
+  const baseUrl = await getUrl();
 
   const metadata: Metadata = {
+    metadataBase: new URL(baseUrl),
     title: meta.title,
     description: meta.description,
     keywords: meta.keywords,
