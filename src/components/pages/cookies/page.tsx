@@ -6,6 +6,7 @@ import { Page } from '@/components/layout/page';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
 import { AnimatedGroup } from '@/components/ui/animated-group';
+import { AnimatedText } from '@/components/ui/animated-text';
 
 export default function CookiePolicy() {
   const t = useTranslations('cookies');
@@ -31,8 +32,8 @@ export default function CookiePolicy() {
             </p>
           </AnimatedGroup>
 
-          <AnimatedGroup startOrder={4}>
-            <div className='space-y-10'>
+          <div className='space-y-10'>
+            <AnimatedText order={4}>
               <div>
                 <h2 className='text-foreground mb-3 text-lg font-semibold'>
                   {t('whatAreCookies.title')}
@@ -41,7 +42,9 @@ export default function CookiePolicy() {
                   {t('whatAreCookies.description')}
                 </p>
               </div>
+            </AnimatedText>
 
+            <AnimatedText order={5}>
               <div>
                 <h2 className='text-foreground mb-3 text-lg font-semibold'>
                   {t('cookiesWeUse.title')}
@@ -72,7 +75,9 @@ export default function CookiePolicy() {
                   </div>
                 </div>
               </div>
+            </AnimatedText>
 
+            <AnimatedText order={6}>
               <div>
                 <h2 className='text-foreground mb-3 text-lg font-semibold'>
                   {t('yourChoices.title')}
@@ -81,7 +86,9 @@ export default function CookiePolicy() {
                   {t('yourChoices.description')}
                 </p>
               </div>
+            </AnimatedText>
 
+            <AnimatedText order={7}>
               <div>
                 <h2 className='text-foreground mb-3 text-lg font-semibold'>
                   {t('contact.title')}
@@ -92,8 +99,8 @@ export default function CookiePolicy() {
                   })}
                 </p>
               </div>
-            </div>
-          </AnimatedGroup>
+            </AnimatedText>
+          </div>
         </Content>
       </Section>
     </Page>
