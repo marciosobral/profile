@@ -17,9 +17,7 @@ export default function Maintenance() {
       title={t('maintenance.title')}
       subtitle={t('maintenance.subtitle')}
     >
-      <div className='mb-10 flex w-16 items-center gap-2'>
-        <div className='bg-foreground h-px flex-1' />
-      </div>
+      <div className='bg-foreground mx-auto mb-10 h-px w-16' />
 
       <p className='mb-5 text-xs font-medium tracking-[0.2em] text-(--text-muted) uppercase'>
         {t('maintenance.contact')}

@@ -31,6 +31,7 @@ export default function CookiePolicy() {
             </p>
           </AnimatedGroup>
 
+          <AnimatedGroup startOrder={4}>
           <div className='space-y-10'>
             <div>
               <h2 className='text-foreground mb-3 text-lg font-semibold'>
@@ -92,6 +93,7 @@ export default function CookiePolicy() {
               </p>
             </div>
           </div>
+          </AnimatedGroup>
         </Content>
       </Section>
     </Page>
