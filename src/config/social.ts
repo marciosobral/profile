@@ -93,6 +93,15 @@ export const socialConfig: SocialConfigProps[] = [
       home: true,
     },
   },
+  {
+    name: SocialPlatform.Portfolio,
+    url: 'https://www.marciosobral.net',
+    handle: 'marciosobral.net',
+    visibility: {
+      contactForm: true,
+      home: true,
+    },
+  }
 ];
 
 export type SocialConfig = SocialConfigProps;

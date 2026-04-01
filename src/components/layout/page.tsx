@@ -7,6 +7,8 @@ interface PageProps {
 
 export function Page({ children, className }: PageProps) {
   return (
-    <div className={cn('relative flex flex-col', className)}>{children}</div>
+    <div className={cn('relative flex flex-1 flex-col', className)}>
+      {children}
+    </div>
   );
 }

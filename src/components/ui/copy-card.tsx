@@ -28,10 +28,12 @@ export function CopyCard({ icon, label, handle }: CopyCardProps) {
     <div className='group flex h-full w-full flex-col justify-between rounded-xl border border-(--border-soft) px-3 py-3 text-left transition-colors hover:border-(--border-muted)'>
       <BaseCard icon={icon} label={label} handle={handle} />
 
+      <div className='my-2 h-px w-full bg-(--line-soft)' />
+
       <button
         onClick={handleCopy}
         className={cn(
-          'mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium transition-all duration-200',
+          'flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200',
           copied
             ? 'text-foreground scale-[1.02] bg-(--surface-soft)'
             : 'hover:text-foreground bg-(--surface-soft) text-(--text-soft) active:scale-95',

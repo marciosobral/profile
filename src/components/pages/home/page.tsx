@@ -3,13 +3,13 @@
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 
+import { Header } from '@/components/layout/header';
 import { Page } from '@/components/layout/page';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
 import { AnimatedText } from '@/components/ui/animated-text';
 import { LinkCard } from '@/components/ui/link-card';
 import { CopyCard } from '@/components/ui/copy-card';
-import { useTheme } from '@/hooks/use-theme';
 import { socialIcons } from '@/components/ui/social-icons';
 import {
   getSocialLinks,
@@ -19,7 +19,6 @@ import {
 import { siteConfig } from '@/config/site';
 import type { Locale } from '@/config/i18n';
 
-import FullNameSvg from '@assets/logos/full-name.svg';
 import ProfilePicture from '@assets/images/profile-picture.jpeg';
 
 type CardType = 'link' | 'copy';
@@ -27,6 +26,7 @@ type CardType = 'link' | 'copy';
 type GridItem = {
   platform: SocialPlatform;
   type?: CardType;
+  disabled?: boolean;
 };
 
 const gridItems: GridItem[] = [
@@ -36,6 +36,7 @@ const gridItems: GridItem[] = [
   { platform: SocialPlatform.Instagram },
   { platform: SocialPlatform.Discord },
   { platform: SocialPlatform.Email, type: 'copy' },
+  { platform: SocialPlatform.Portfolio, disabled: true },
 ];
 
 const rowSpanByType: Partial<Record<CardType, string>> = {
@@ -45,16 +46,15 @@ const rowSpanByType: Partial<Record<CardType, string>> = {
 export default function Home() {
   const t = useTranslations('home');
   const locale = useLocale() as Locale;
-  const { mode } = useTheme();
-
   const socialLinks = new Map<SocialPlatform, ResolvedSocialConfig>(
     getSocialLinks('home', locale).map((s) => [s.name, s]),
   );
 
   return (
     <Page>
-      <Section>
-        <Content className='min-h-screen max-w-xl justify-start gap-8 py-16'>
+      <Header showBack={false} />
+      <Section className='flex-1'>
+        <Content className='max-w-xl gap-8 pt-8 pb-16 md:py-16'>
           <AnimatedText order={0} className='w-full'>
             <div className='flex items-center gap-5'>
               <Image
@@ -64,12 +64,11 @@ export default function Home() {
                 height={96}
                 className='shrink-0 rounded-full object-cover'
               />
-              <div className='flex flex-col gap-1.5'>
-                <Image
-                  src={FullNameSvg}
-                  alt={siteConfig.author}
-                  className={`h-7 w-auto ${mode === 'dark' ? 'invert' : ''}`}
-                />
+              <div className='flex flex-col gap-2'>
+                <div className='bg-foreground h-px w-10' />
+                <h1 className='text-2xl font-semibold tracking-tight'>
+                  {siteConfig.author}
+                </h1>
                 <p className='text-sm text-(--text-soft)'>{t('greeting')}</p>
               </div>
             </div>
@@ -92,7 +91,7 @@ export default function Home() {
             </p>
           </AnimatedText>
 
-          <div className='grid w-full grid-cols-1 gap-2.5 sm:grid-cols-2'>
+          <div className='grid w-full grid-cols-1 gap-2.5 sm:auto-rows-fr sm:grid-cols-2'>
             {gridItems.map((item, i) => {
               const social = socialLinks.get(item.platform);
               if (!social) return null;
@@ -118,6 +117,7 @@ export default function Home() {
                       icon={icon}
                       label={label}
                       handle={social.handle}
+                      disabled={item.disabled}
                     />
                   )}
                 </AnimatedText>

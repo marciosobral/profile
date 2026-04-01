@@ -29,8 +29,11 @@
         ]
       }
     },
+    "header": {
+      "contact": "Fale comigo"
+    },
     "navigation": {
-      "home": "Início",
+      "home": "Voltar ao início",
       "about": "Sobre Mim",
       "technologies": "Tecnologias",
       "experience": "Experiência",

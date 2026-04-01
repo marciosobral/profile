@@ -28,7 +28,7 @@ export function StatusPage({
   showBack = true,
 }: StatusPageProps) {
   return (
-    <Page className='min-h-screen'>
+    <Page>
       <Header showBack={showBack} />
       <Section className='flex-1'>
         <Content className='max-w-lg pt-0 text-center'>
