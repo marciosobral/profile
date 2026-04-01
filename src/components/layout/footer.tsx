@@ -13,6 +13,7 @@ import { socialIcons } from '@/components/ui/social-icons';
 import { type Locale } from '@/config/i18n';
 import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
 import { useTheme } from '@/hooks/use-theme';
+import { flagLoaderSkip } from '@/lib/loader-state';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
 
@@ -30,6 +31,7 @@ export function Footer() {
 
   const handleLocaleSwitch = (newLocale: Locale) => {
     if (newLocale === locale || isPending) return;
+    flagLoaderSkip();
     startTransition(() => {
       router.replace(pathname, { locale: newLocale });
     });

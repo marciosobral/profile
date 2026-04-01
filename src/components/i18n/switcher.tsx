@@ -6,7 +6,6 @@ import { useState, useTransition } from 'react';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
 import { Locale } from '@/config/i18n';
-import { useAnimation } from '@/hooks/use-animation';
 import { flagLoaderSkip } from '@/lib/loader-state';
 
 export default function LanguageSwitcher() {
@@ -18,13 +17,11 @@ export default function LanguageSwitcher() {
   const [pendingLocale, setPendingLocale] = useState<Locale | null>(null);
 
   const availableLocales = getAvailableLocales();
-  const { setTransitionMode } = useAnimation();
 
   const handleLocaleSwitch = (newLocale: Locale) => {
     if (newLocale === currentLocale || isPending) return;
 
     flagLoaderSkip();
-    setTransitionMode();
     setPendingLocale(newLocale);
 
     startTransition(() => {
