@@ -8,10 +8,9 @@ export function isValidLocale(locale: string): locale is Locale {
 }
 
 export function normalizeLocale(locale?: string, host?: string): Locale {
-  const valid = isValidLocale(locale ?? '');
-  const resolved = valid ? (locale as Locale) : getDomainDefaultLocale(host);
-  console.log('[i18n:normalize] input=%s valid=%s host=%s resolved=%s', locale ?? 'undefined', valid, host ?? 'undefined', resolved);
-  return resolved;
+  return isValidLocale(locale ?? '')
+    ? (locale as Locale)
+    : getDomainDefaultLocale(host);
 }
 
 export const validateLocale = normalizeLocale;

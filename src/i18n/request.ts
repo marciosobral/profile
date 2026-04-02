@@ -10,7 +10,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const headersList = await headers();
   const host = getHostFromHeaders(headersList);
   const locale = normalizeLocale(requested ?? undefined, host);
-  console.log('[i18n:request] requestLocale=%s host=%s resolved=%s', requested ?? 'undefined', host, locale);
   const messages = await loadMessages(locale);
 
   return {
