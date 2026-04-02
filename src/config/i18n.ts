@@ -45,7 +45,6 @@ export function getDomainDefaultLocale(host?: string | null): Locale {
   const normalizedHost = normalizeHost(host);
   const matchedDomain = domains.find((domainConfig) => {
     const normalizedDomain = normalizeHost(domainConfig.domain);
-    console.log('Comparing host:', normalizedHost, 'with domain:', normalizedDomain);
     return (
       normalizedHost === normalizedDomain ||
       normalizedHost.endsWith(`${normalizedDomain}`)
