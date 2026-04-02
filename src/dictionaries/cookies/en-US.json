@@ -1,0 +1,37 @@
+{
+  "cookies": {
+    "metadata": {
+      "title": "Cookie Policy",
+      "description": "Learn about the cookies used on this website."
+    },
+    "title": "Cookie Policy",
+    "lastUpdated": "Last updated: March 1, 2026",
+    "intro": "This page explains what cookies are, how this website uses them, and what choices you have.",
+    "whatAreCookies": {
+      "title": "What are cookies?",
+      "description": "Cookies are small text files stored on your device by your web browser. They help websites remember your preferences and improve your experience."
+    },
+    "cookiesWeUse": {
+      "title": "Cookies we use",
+      "functional": {
+        "title": "Functional cookies",
+        "description": "These cookies are necessary for the website to work correctly and remember your preferences. They do not track you or collect personal information.",
+        "theme": "Theme preference — remembers your chosen visual theme (e.g., ink, ocean).",
+        "mode": "Display mode — remembers your light or dark mode preference.",
+        "locale": "Language — remembers your preferred language."
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "This website uses Vercel Analytics and Speed Insights to understand general usage patterns. These services are privacy-focused: they do not use cookies for tracking, do not collect personal data, and do not follow you across websites."
+      }
+    },
+    "yourChoices": {
+      "title": "Your choices",
+      "description": "You can manage or delete cookies through your browser settings. Note that disabling functional cookies may affect your experience, as the site won't be able to remember your theme, mode, or language preferences."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "If you have any questions about this cookie policy, you can reach me at {email}."
+    }
+  }
+}

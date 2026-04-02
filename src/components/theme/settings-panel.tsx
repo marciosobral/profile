@@ -1,35 +1,34 @@
 'use client';
 
-import { useState, useTransition } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { GearSixIcon } from '@phosphor-icons/react';
-import { useTheme } from './use-theme';
-import { usePathname, useRouter } from '@/i18n/navigation';
-import { getAvailableLocales, getLocaleInfo, type Locale } from '@/lib/i18n';
+import { useEffect, useRef, type MouseEvent } from 'react';
+import { useTranslations } from 'next-intl';
+import { GearSixIcon } from '@phosphor-icons/react/ssr';
+
+import { useTheme } from '@/hooks/use-theme';
+import { useOpenState } from '@/hooks/use-open-state';
+import { type TransitionOrigin } from '@/lib/theme/radial-reveal';
 import type { Mode } from '@/lib/theme';
 
 export function SettingsPanel() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen, toggle] = useOpenState('settings-panel');
   const { theme, mode, setTheme, toggleMode, themes } = useTheme();
   const t = useTranslations('common.settings');
+  const panelRef = useRef<HTMLDivElement | null>(null);
 
-  const router = useRouter();
-  const pathname = usePathname();
-  const currentLocale = useLocale() as Locale;
-  const [isPending, startTransition] = useTransition();
-  const availableLocales = getAvailableLocales();
+  const getTransitionOrigin = (
+    event: MouseEvent<HTMLButtonElement>,
+  ): TransitionOrigin => ({
+    x: event.clientX,
+    y: event.clientY,
+  });
 
-  const handleLocaleSwitch = (newLocale: Locale) => {
-    if (newLocale === currentLocale || isPending) return;
-    startTransition(() => {
-      router.replace(pathname, { locale: newLocale });
-    });
-    setOpen(false);
-  };
-
-  const handleModeSwitch = (newMode: Mode) => {
-    if (newMode !== mode) toggleMode();
-    setOpen(false);
+  const handleModeSwitch = (
+    newMode: Mode,
+    event: MouseEvent<HTMLButtonElement>,
+  ) => {
+    if (newMode !== mode) {
+      toggleMode(getTransitionOrigin(event));
+    }
   };
 
   const modeOptions = [
@@ -42,70 +41,63 @@ export function SettingsPanel() {
     label: th.charAt(0).toUpperCase() + th.slice(1),
   }));
 
-  const localeOptions = availableLocales.map((locale) => ({
-    value: locale,
-    label: getLocaleInfo(locale).name,
-  }));
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (panelRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [open, setOpen]);
 
   return (
-    <div className='fixed right-4 bottom-4 z-50 flex flex-col items-end'>
+    <div
+      ref={panelRef}
+      className='fixed right-4 bottom-4 z-50 flex flex-col items-end'
+    >
       {open && (
-        <div className='border-foreground/10 bg-background mb-2 min-w-40 overflow-hidden rounded-lg border shadow-lg'>
-          <div className='border-foreground/10 border-b px-3 pt-3 pb-1'>
-            <p className='mb-1 text-xs font-medium tracking-wide uppercase opacity-40'>
+        <div className='bg-background mb-2 min-w-40 overflow-hidden rounded-lg border border-(--border-soft) shadow-lg'>
+          <div className='border-b border-(--border-soft) px-3 pt-3 pb-1'>
+            <p className='mb-1 text-xs font-medium tracking-wide text-(--text-soft) uppercase'>
               {t('mode')}
             </p>
           </div>
           {modeOptions.map((opt) => (
             <button
               key={opt.value}
-              onClick={() => handleModeSwitch(opt.value)}
+              onClick={(event) => handleModeSwitch(opt.value, event)}
               className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                 mode === opt.value
-                  ? 'bg-foreground/10 font-medium'
-                  : 'hover:bg-foreground/5'
+                  ? 'bg-(--surface-soft) font-medium'
+                  : 'hover:bg-(--surface-soft)'
               }`}
             >
               {opt.label}
             </button>
           ))}
 
-          <div className='border-foreground/10 border-b px-3 pt-3 pb-1'>
-            <p className='mb-1 text-xs font-medium tracking-wide uppercase opacity-40'>
+          <div className='border-b border-(--border-soft) px-3 pt-3 pb-1'>
+            <p className='mb-1 text-xs font-medium tracking-wide text-(--text-soft) uppercase'>
               {t('theme')}
             </p>
           </div>
           {themeOptions.map((opt) => (
             <button
               key={opt.value}
-              onClick={() => {
-                setTheme(opt.value);
-                setOpen(false);
-              }}
+              onClick={(event) =>
+                setTheme(opt.value, getTransitionOrigin(event))
+              }
               className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                 theme === opt.value
-                  ? 'bg-foreground/10 font-medium'
-                  : 'hover:bg-foreground/5'
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
-
-          <div className='border-foreground/10 border-b px-3 pt-3 pb-1'>
-            <p className='mb-1 text-xs font-medium tracking-wide uppercase opacity-40'>
-              {t('language')}
-            </p>
-          </div>
-          {localeOptions.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={() => handleLocaleSwitch(opt.value)}
-              disabled={isPending}
-              className={`w-full px-3 py-2 text-left text-sm transition-colors disabled:opacity-50 ${
-                currentLocale === opt.value
-                  ? 'bg-foreground/10 font-medium'
-                  : 'hover:bg-foreground/5'
+                  ? 'bg-(--surface-soft) font-medium'
+                  : 'hover:bg-(--surface-soft)'
               }`}
             >
               {opt.label}
@@ -115,9 +107,9 @@ export function SettingsPanel() {
       )}
 
       <button
-        onClick={() => setOpen(!open)}
+        onClick={toggle}
         aria-label={t('toggle')}
-        className='border-foreground/20 bg-background text-foreground flex h-10 w-10 items-center justify-center rounded-full border shadow-md'
+        className='bg-background text-foreground flex h-10 w-10 items-center justify-center rounded-full border border-(--border-soft) shadow-md'
       >
         <GearSixIcon size={18} weight='light' />
       </button>

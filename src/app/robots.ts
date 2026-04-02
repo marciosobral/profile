@@ -1,0 +1,55 @@
+import type { MetadataRoute } from 'next';
+
+import {
+  locales,
+  getDomainDefaultLocale,
+  localePrefix,
+  pathnames,
+} from '@/config/i18n';
+import { excludedRoutes } from '@/config/routes';
+import { getUrl, isPreviewDeployment } from '@/utils/host';
+
+function getLocalizedPaths(routePath: string, defaultLocale: string): string[] {
+  const localized = pathnames[routePath as keyof typeof pathnames];
+  if (!localized) return [routePath];
+
+  if (typeof localized === 'string') return [localized];
+
+  return locales.map((locale) => {
+    const path = localized[locale];
+    const isDefault = locale === defaultLocale;
+    if (isDefault) return path;
+    const prefix = localePrefix.prefixes[locale];
+    return `${prefix}${path}`;
+  });
+}
+
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const [baseUrl, preview] = await Promise.all([
+    getUrl(),
+    isPreviewDeployment(),
+  ]);
+
+  if (preview) {
+    return {
+      rules: [{ userAgent: '*', disallow: ['/'] }],
+    };
+  }
+
+  const host = new URL(baseUrl).host;
+  const domainDefaultLocale = getDomainDefaultLocale(host);
+  const disallowPaths = excludedRoutes.flatMap((routePath) =>
+    getLocalizedPaths(routePath, domainDefaultLocale),
+  );
+
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: ['/'],
+        disallow: disallowPaths,
+      },
+    ],
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
+}

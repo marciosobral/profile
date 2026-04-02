@@ -1,18 +1,35 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+
 import { siteConfig } from '@/config/site';
+import { getUrl, isPreviewDeployment } from '@/utils/host';
+import type { Locale } from '@/config/i18n';
+import type { Namespace } from '@/config/namespaces';
+import type { RawMetadata } from '@/types/metadata';
+
+export async function getRawMetadata(
+  namespace: Namespace,
+  locale?: string,
+): Promise<RawMetadata> {
+  const t = await getTranslations({
+    namespace,
+    locale: locale as Locale,
+  });
+  return t.raw('metadata') as RawMetadata;
+}
 
 export async function generateMetadata(
-  namespace: string,
+  namespace: Namespace,
   locale?: string,
 ): Promise<Metadata> {
-  const t = await getTranslations({
-    namespace: namespace as any,
-    locale: locale as any,
-  });
-  const meta = (t as any).raw('metadata') as any;
+  const [meta, baseUrl, preview] = await Promise.all([
+    getRawMetadata(namespace, locale),
+    getUrl(),
+    isPreviewDeployment(),
+  ]);
 
   const metadata: Metadata = {
+    metadataBase: new URL(baseUrl),
     title: meta.title,
     description: meta.description,
     keywords: meta.keywords,
@@ -28,7 +45,7 @@ export async function generateMetadata(
     };
   }
 
-  if (meta.noIndex) {
+  if (preview || meta.noIndex) {
     metadata.robots = {
       index: false,
       follow: false,

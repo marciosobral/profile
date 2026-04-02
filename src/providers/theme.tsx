@@ -1,12 +1,8 @@
 'use client';
 
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useState,
-  type ReactNode,
-} from 'react';
+import { createContext, useCallback, useState, type ReactNode } from 'react';
+
+import { useMountEffect } from '@/hooks/use-mount-effect';
 
 import {
   themes,
@@ -20,12 +16,16 @@ import {
   type Theme,
   type Mode,
 } from '@/lib/theme';
+import {
+  runRadialRevealTransition,
+  type TransitionOrigin,
+} from '@/lib/theme/radial-reveal';
 
 interface ThemeContextValue {
   theme: Theme;
   mode: Mode;
-  setTheme: (theme: Theme) => void;
-  toggleMode: () => void;
+  setTheme: (theme: Theme, origin?: TransitionOrigin) => void;
+  toggleMode: (origin?: TransitionOrigin) => void;
   themes: readonly Theme[];
   modes: readonly Mode[];
 }
@@ -61,36 +61,36 @@ function applyAttributes(theme: Theme, mode: Mode) {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(defaultTheme);
   const [mode, setModeState] = useState<Mode>(defaultMode);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
+  useMountEffect(() => {
     setThemeState(getInitialTheme());
     setModeState(getInitialMode());
-    setMounted(true);
-  }, []);
+  });
 
   const setTheme = useCallback(
-    (newTheme: Theme) => {
-      setThemeState(newTheme);
-      setCookie(THEME_COOKIE, newTheme);
-      applyAttributes(newTheme, mode);
+    (newTheme: Theme, origin?: TransitionOrigin) => {
+      if (newTheme === theme) return;
+
+      runRadialRevealTransition(() => {
+        setThemeState(newTheme);
+        setCookie(THEME_COOKIE, newTheme);
+        applyAttributes(newTheme, mode);
+      }, origin);
     },
-    [mode],
+    [mode, theme],
   );
 
-  const toggleMode = useCallback(() => {
-    const newMode = mode === 'light' ? 'dark' : 'light';
-    setModeState(newMode);
-    setCookie(MODE_COOKIE, newMode);
-    applyAttributes(theme, newMode);
-  }, [theme, mode]);
-
-  useEffect(() => {
-    if (!mounted) return;
-    setCookie(THEME_COOKIE, theme);
-    setCookie(MODE_COOKIE, mode);
-    applyAttributes(theme, mode);
-  }, [mounted, theme, mode]);
+  const toggleMode = useCallback(
+    (origin?: TransitionOrigin) => {
+      const newMode = mode === 'light' ? 'dark' : 'light';
+      runRadialRevealTransition(() => {
+        setModeState(newMode);
+        setCookie(MODE_COOKIE, newMode);
+        applyAttributes(theme, newMode);
+      }, origin);
+    },
+    [theme, mode],
+  );
 
   return (
     <ThemeContext.Provider

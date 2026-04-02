@@ -1,19 +1,15 @@
-import { getTranslations } from 'next-intl/server';
-
 import { siteConfig } from '@/config/site';
 import { getUrl } from '@/utils/host';
+import type { Locale } from '@/config/i18n';
+import { getRawMetadata } from '@/lib/metadata';
+import { socialConfig } from '@/config/social';
 
 interface JsonLdProps {
-  locale: string;
+  locale: Locale;
 }
 
 export async function JsonLd({ locale }: JsonLdProps) {
-  const t = await getTranslations({
-    namespace: 'common' as any,
-    locale: locale as any,
-  });
-
-  const meta = (t as any).raw('metadata') as any;
+  const meta = await getRawMetadata('common', locale);
   const jsonLdData = meta.jsonLd;
 
   const url = await getUrl();
@@ -22,11 +18,13 @@ export async function JsonLd({ locale }: JsonLdProps) {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: siteConfig.author,
-    jobTitle: jsonLdData.jobTitle,
-    description: jsonLdData.description,
+    jobTitle: jsonLdData?.jobTitle,
+    description: jsonLdData?.description,
     url,
-    knowsAbout: jsonLdData.knowsAbout,
-    sameAs: siteConfig.socialLinks,
+    knowsAbout: jsonLdData?.knowsAbout,
+    sameAs: socialConfig
+      .filter((config) => config.visibility?.jsonLd)
+      .map((config) => config.url),
   };
 
   const webSiteSchema = {

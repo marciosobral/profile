@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+import { Montserrat, Playfair_Display } from 'next/font/google';
 import { hasLocale } from 'next-intl';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { generateMetadata as generateMeta } from '@/lib/metadata';
 import { routing } from '@/i18n/routing';
@@ -11,9 +13,13 @@ import { getLocaleInfo } from '@/lib/i18n';
 import { Body } from '@/components/layout/body';
 import { Html } from '@/components/layout/html';
 import { Main } from '@/components/layout/main';
-import { ThemeProvider } from '@/components/theme/provider';
+import { StateProvider } from '@/providers/state';
+import { ThemeProvider } from '@/providers/theme';
+import { AnimationProvider } from '@/providers/animation';
 import { SettingsPanel } from '@/components/theme/settings-panel';
+import { Footer } from '@/components/layout/footer';
 import { JsonLd } from '@/components/seo/json-ld';
+import { PageLoader } from '@/components/layout/page-loader';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -24,6 +30,12 @@ const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-montserrat',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
 });
 
 export async function generateMetadata({
@@ -53,16 +65,24 @@ export default async function LocaleLayout({
     <Html
       lang={localeInfo.htmlLang}
       dir={localeInfo.direction}
-      className={montserrat.className}
+      className={`${montserrat.className} ${playfairDisplay.variable}`}
     >
       <Body>
+        <PageLoader />
         <JsonLd locale={locale} />
         <NextIntlClientProvider>
-          <ThemeProvider>
-            <Main>{children}</Main>
-            <SettingsPanel />
-          </ThemeProvider>
+          <StateProvider>
+            <AnimationProvider>
+              <ThemeProvider>
+                <Main>{children}</Main>
+                <Footer />
+                <SettingsPanel />
+              </ThemeProvider>
+            </AnimationProvider>
+          </StateProvider>
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </Body>
     </Html>
   );

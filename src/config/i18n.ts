@@ -1,20 +1,80 @@
+import type { DomainsConfig, LocalePrefix } from 'next-intl/routing';
+import type { RoutePath } from './routes';
+
 export const locales = ['en-US', 'pt-BR'] as const;
 
-export const defaultLocale = 'pt-BR' as const;
+export type Locale = (typeof locales)[number];
 
-export const localePrefix = 'as-needed' as const;
+export const defaultLocale = 'pt-BR' satisfies Locale;
+
+export const localePrefix = {
+  mode: 'as-needed',
+  prefixes: {
+    'en-US': '/en',
+    'pt-BR': '/br',
+  },
+} satisfies LocalePrefix<typeof locales, 'as-needed'>;
 
 export const localeDetection = true;
 
 export const domains = [
+  // {
+  //   domain: 'marciosobral.com.br',
+  //   defaultLocale: 'pt-BR',
+  //   locales: ['pt-BR'],
+  // },
+  // {
+  //   domain: 'marciosobral.net',
+  //   defaultLocale: 'en-US',
+  //   locales: ['en-US'],
+  // },
   {
-    domain: 'marciosobral.com.br',
-    defaultLocale: 'pt-BR',
-    locales: ['pt-BR', 'en-US'],
+    domain: 'marciosobral.com',
+    defaultLocale: 'en-US',
+    locales: ['en-US', 'pt-BR'],
   },
-] as const;
+] satisfies DomainsConfig<typeof locales>;
 
-export const localeInfo = {
+function normalizeHost(value: string) {
+  return value.toLowerCase().split(':')[0];
+}
+
+export function getDomainDefaultLocale(host?: string | null): Locale {
+  if (!host) return defaultLocale;
+
+  const normalizedHost = normalizeHost(host);
+  const matchedDomain = domains.find((domainConfig) => {
+    const normalizedDomain = normalizeHost(domainConfig.domain);
+    return (
+      normalizedHost === normalizedDomain ||
+      normalizedHost.endsWith(`.${normalizedDomain}`)
+    );
+  });
+
+  return (matchedDomain?.defaultLocale ?? defaultLocale) as Locale;
+}
+
+export const pathnames = {
+  '/': '/',
+  '/maintenance': {
+    'en-US': '/maintenance',
+    'pt-BR': '/manutencao',
+  },
+  '/cookies': {
+    'en-US': '/cookies',
+    'pt-BR': '/politica-de-cookies',
+  },
+} satisfies Record<RoutePath, string | Record<Locale, string>>;
+
+export type LocaleInfo = {
+  name: string;
+  flag: string;
+  htmlLang: string;
+  openGraphLocale: string;
+  direction: 'ltr' | 'rtl';
+};
+
+export const localeInfo: Record<Locale, LocaleInfo> = {
   'en-US': {
     name: 'English',
     flag: '🇺🇸',
@@ -29,4 +89,4 @@ export const localeInfo = {
     openGraphLocale: 'pt_BR',
     direction: 'ltr',
   },
-} as const;
+};

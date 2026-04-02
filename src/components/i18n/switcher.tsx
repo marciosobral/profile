@@ -4,7 +4,9 @@ import { useLocale } from 'next-intl';
 import { useState, useTransition } from 'react';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { getAvailableLocales, getLocaleInfo, Locale } from '@/lib/i18n';
+import { getAvailableLocales, getLocaleInfo } from '@/lib/i18n';
+import { Locale } from '@/config/i18n';
+import { flagLoaderSkip } from '@/lib/loader-state';
 
 export default function LanguageSwitcher() {
   const router = useRouter();
@@ -19,6 +21,7 @@ export default function LanguageSwitcher() {
   const handleLocaleSwitch = (newLocale: Locale) => {
     if (newLocale === currentLocale || isPending) return;
 
+    flagLoaderSkip();
     setPendingLocale(newLocale);
 
     startTransition(() => {
@@ -29,7 +32,7 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className='border-foreground/20 bg-foreground/5 inline-flex rounded-lg border p-1'>
+    <div className='inline-flex rounded-lg border border-(--border-soft) bg-(--surface-soft) p-1'>
       {availableLocales.map((locale) => {
         const localeData = getLocaleInfo(locale);
         const isActive = currentLocale === locale;
@@ -40,10 +43,10 @@ export default function LanguageSwitcher() {
             key={locale}
             onClick={() => handleLocaleSwitch(locale)}
             disabled={isPending}
-            className={`relative flex cursor-pointer items-center justify-center gap-2 rounded-md px-4 py-2 text-2xl font-medium transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${
+            className={`relative flex cursor-pointer items-center justify-center gap-2 rounded-md px-3 py-2 text-xl font-medium transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 sm:px-4 sm:text-2xl ${
               isActive
                 ? 'bg-foreground text-background shadow-sm'
-                : 'text-foreground hover:bg-foreground/10 active:bg-foreground/20'
+                : 'text-foreground hover:bg-(--surface-soft) active:bg-(--line-soft)'
             } ${isLoading ? 'animate-pulse' : ''} `}
             aria-pressed={isActive}
           >
