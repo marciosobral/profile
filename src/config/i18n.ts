@@ -18,15 +18,20 @@ export const localePrefix = {
 export const localeDetection = true;
 
 export const domains = [
+  // {
+  //   domain: 'marciosobral.com.br',
+  //   defaultLocale: 'pt-BR',
+  //   locales: ['pt-BR'],
+  // },
+  // {
+  //   domain: 'marciosobral.net',
+  //   defaultLocale: 'en-US',
+  //   locales: ['en-US'],
+  // },
   {
-    domain: 'marciosobral.com.br',
-    defaultLocale: 'pt-BR',
-    locales: ['pt-BR'],
-  },
-  {
-    domain: 'marciosobral.net',
+    domain: 'marciosobral.com',
     defaultLocale: 'en-US',
-    locales: ['en-US'],
+    locales: ['en-US', 'pt-BR'],
   },
 ] satisfies DomainsConfig<typeof locales>;
 

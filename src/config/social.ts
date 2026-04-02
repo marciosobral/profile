@@ -54,12 +54,12 @@ export const socialConfig: SocialConfigProps[] = [
   {
     name: SocialPlatform.Email,
     url: {
-      'en-US': 'mailto:hello@marciosobral.net',
-      'pt-BR': 'mailto:contato@marciosobral.com.br',
+      'en-US': 'mailto:hello@marciosobral.com',
+      'pt-BR': 'mailto:contato@marciosobral.com',
     },
     handle: {
-      'en-US': 'hello@marciosobral.net',
-      'pt-BR': 'contato@marciosobral.com.br',
+      'en-US': 'hello@marciosobral.com',
+      'pt-BR': 'contato@marciosobral.com',
     },
     visibility: {
       home: true,
@@ -95,8 +95,8 @@ export const socialConfig: SocialConfigProps[] = [
   },
   {
     name: SocialPlatform.Portfolio,
-    url: 'https://www.marciosobral.net',
-    handle: 'marciosobral.net',
+    url: 'https://www.marciosobral.com',
+    handle: 'marciosobral.com',
     visibility: {
       contactForm: true,
       home: true,

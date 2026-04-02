@@ -4,7 +4,7 @@ Modern and responsive profile website built with Next.js App Router, Tailwind CS
 
 ## Live
 
-- https://www.marciosobral.net
+- https://www.marciosobral.com
 
 ## Highlights
 
