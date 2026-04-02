@@ -47,7 +47,7 @@ export function getDomainDefaultLocale(host?: string | null): Locale {
     const normalizedDomain = normalizeHost(domainConfig.domain);
     return (
       normalizedHost === normalizedDomain ||
-      normalizedHost.endsWith(`.${normalizedDomain}`)
+      normalizedHost.endsWith(`${normalizedDomain}`)
     );
   });
 
