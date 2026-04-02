@@ -40,7 +40,10 @@ function normalizeHost(value: string) {
 }
 
 export function getDomainDefaultLocale(host?: string | null): Locale {
-  if (!host) return defaultLocale;
+  if (!host) {
+    console.log('[i18n:domain] No host provided, falling back to global default:', defaultLocale);
+    return defaultLocale;
+  }
 
   const normalizedHost = normalizeHost(host);
   const matchedDomain = domains.find((domainConfig) => {
@@ -51,7 +54,9 @@ export function getDomainDefaultLocale(host?: string | null): Locale {
     );
   });
 
-  return (matchedDomain?.defaultLocale ?? defaultLocale) as Locale;
+  const resolved = (matchedDomain?.defaultLocale ?? defaultLocale) as Locale;
+  console.log('[i18n:domain] host=%s matched=%s resolved=%s', normalizedHost, matchedDomain?.domain ?? 'none', resolved);
+  return resolved;
 }
 
 export const pathnames = {

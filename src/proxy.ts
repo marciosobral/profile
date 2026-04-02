@@ -41,9 +41,13 @@ function getLocalizedPublicPath(
 }
 
 export function proxy(request: NextRequest) {
+  const host = getHostFromHeaders(request.headers);
+  console.log('[i18n:middleware] incoming request: url=%s host=%s', request.nextUrl.pathname, host);
+
   const response = handleI18nRouting(request);
 
   if (!response.ok) {
+    console.log('[i18n:middleware] non-ok response, status=%s', response.status);
     return response;
   }
 
@@ -53,7 +57,7 @@ export function proxy(request: NextRequest) {
   const url = new URL(rewriteHeader ?? request.url);
 
   const [, locale, ...rest] = url.pathname.split('/');
-  const host = getHostFromHeaders(request.headers);
+  console.log('[i18n:middleware] after routing: rewrite=%s locale=%s redirectLocation=%s', url.pathname, locale, response.headers.get('location') ?? 'none');
   const currentPath = request.nextUrl.pathname;
   const maintenancePath = getLocalizedPublicPath(
     MAINTENANCE_ROUTE,
