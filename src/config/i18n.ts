@@ -19,17 +19,17 @@ export const localeDetection = true;
 
 export const domains = [
   // {
-  //   domain: 'www.marciosobral.com.br',
+  //   domain: 'marciosobral.com.br',
   //   defaultLocale: 'pt-BR',
   //   locales: ['pt-BR'],
   // },
   // {
-  //   domain: 'www.marciosobral.net',
+  //   domain: 'marciosobral.net',
   //   defaultLocale: 'en-US',
   //   locales: ['en-US'],
   // },
   {
-    domain: 'www.marciosobral.com',
+    domain: 'marciosobral.com',
     defaultLocale: 'en-US',
     locales: ['en-US', 'pt-BR'],
   },
@@ -45,9 +45,10 @@ export function getDomainDefaultLocale(host?: string | null): Locale {
   const normalizedHost = normalizeHost(host);
   const matchedDomain = domains.find((domainConfig) => {
     const normalizedDomain = normalizeHost(domainConfig.domain);
+    console.log('Comparing host:', normalizedHost, 'with domain:', normalizedDomain);
     return (
       normalizedHost === normalizedDomain ||
-      normalizedHost.endsWith(`.${normalizedDomain}`)
+      normalizedHost.endsWith(`${normalizedDomain}`)
     );
   });
 
