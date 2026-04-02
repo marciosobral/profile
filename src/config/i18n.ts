@@ -19,17 +19,17 @@ export const localeDetection = true;
 
 export const domains = [
   // {
-  //   domain: 'marciosobral.com.br',
+  //   domain: 'www.marciosobral.com.br',
   //   defaultLocale: 'pt-BR',
   //   locales: ['pt-BR'],
   // },
   // {
-  //   domain: 'marciosobral.net',
+  //   domain: 'www.marciosobral.net',
   //   defaultLocale: 'en-US',
   //   locales: ['en-US'],
   // },
   {
-    domain: 'marciosobral.com',
+    domain: 'www.marciosobral.com',
     defaultLocale: 'en-US',
     locales: ['en-US', 'pt-BR'],
   },
