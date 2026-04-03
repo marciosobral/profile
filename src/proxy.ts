@@ -6,6 +6,7 @@ import { isMaintenanceActive } from './lib/maintenance';
 import { getHostFromHeaders } from './utils/host';
 import {
   getDomainDefaultLocale,
+  domains,
   localePrefix,
   pathnames,
   type Locale,
@@ -13,6 +14,30 @@ import {
 import { MAINTENANCE_ROUTE, type RoutePath } from './config/routes';
 
 const handleI18nRouting = createMiddleware(routing);
+
+const knownDomains = domains.map((d) => d.domain);
+
+function normalizeHostForRouting(request: NextRequest): NextRequest {
+  const hostname = getHostFromHeaders(request.headers);
+  const matchedDomain = knownDomains.find(
+    (d) => hostname === d || hostname.endsWith(`.${d}`),
+  );
+
+  if (matchedDomain && hostname !== matchedDomain) {
+    const headers = new Headers(request.headers);
+    headers.set('host', matchedDomain);
+    if (request.headers.has('x-forwarded-host')) {
+      headers.set('x-forwarded-host', matchedDomain);
+    }
+    return new NextRequest(request.url, {
+      headers,
+      method: request.method,
+      body: request.body,
+    });
+  }
+
+  return request;
+}
 
 function getLocalizedMaintenancePath(locale: string): string {
   const maintenancePathnames = pathnames[MAINTENANCE_ROUTE];
@@ -41,7 +66,8 @@ function getLocalizedPublicPath(
 }
 
 export function proxy(request: NextRequest) {
-  const response = handleI18nRouting(request);
+  const normalizedRequest = normalizeHostForRouting(request);
+  const response = handleI18nRouting(normalizedRequest);
 
   if (!response.ok) {
     return response;
