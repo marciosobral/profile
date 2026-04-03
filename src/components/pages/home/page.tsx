@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { Header } from '@/components/layout/header';
 import { Page } from '@/components/layout/page';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
@@ -52,7 +51,6 @@ export default function Home() {
 
   return (
     <Page>
-      <Header showBack={false} />
       <Section className='flex-1'>
         <Content className='max-w-xl gap-8 pt-8 pb-16 md:py-16'>
           <AnimatedText order={0} className='w-full'>
