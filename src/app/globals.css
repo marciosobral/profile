@@ -1,10 +1,10 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ededed;
+  --background: #f2f2f2;
   --foreground: #171717;
-  --header: #dcdcdc;
-  --footer: #dcdcdc;
+  --header: #e4e4e4;
+  --footer: #e4e4e4;
   --text-muted: rgb(23 23 23 / 72%);
   --text-soft: rgb(23 23 23 / 70%);
   --text-faint: rgb(23 23 23 / 42%);
@@ -41,10 +41,10 @@
 }
 
 [data-theme='ink'][data-mode='light'] {
-  --background: #ededed;
+  --background: #f2f2f2;
   --foreground: #171717;
-  --header: #dcdcdc;
-  --footer: #dcdcdc;
+  --header: #e4e4e4;
+  --footer: #e4e4e4;
   --text-muted: rgb(23 23 23 / 72%);
   --text-soft: rgb(23 23 23 / 70%);
   --text-faint: rgb(23 23 23 / 42%);
