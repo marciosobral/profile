@@ -101,7 +101,7 @@ export const socialConfig: SocialConfigProps[] = [
       contactForm: true,
       home: true,
     },
-  }
+  },
 ];
 
 export type SocialConfig = SocialConfigProps;
