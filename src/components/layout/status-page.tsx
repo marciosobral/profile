@@ -15,7 +15,6 @@ interface StatusPageProps {
   action?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
-  showBack?: boolean;
 }
 
 export function StatusPage({
@@ -25,11 +24,9 @@ export function StatusPage({
   action,
   children,
   footer,
-  showBack = false,
 }: StatusPageProps) {
   return (
     <Page>
-      <Header showBack={showBack} />
       <Section className='flex-1'>
         <Content className='max-w-lg pt-0 text-center'>
           <AnimatedGroup>

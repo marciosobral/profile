@@ -11,11 +11,7 @@ import type { Locale } from '@/config/i18n';
 
 import LogoSvg from '@assets/logos/last-name.svg';
 
-interface PageHeaderProps {
-  showBack?: boolean;
-}
-
-export function Header({ showBack = false }: PageHeaderProps) {
+export function Header() {
   const { mode } = useTheme();
   const t = useTranslations('common');
   const locale = useLocale() as Locale;
@@ -32,14 +28,6 @@ export function Header({ showBack = false }: PageHeaderProps) {
           />
         </Link>
         <nav className='flex items-center gap-4'>
-          {showBack && (
-            <Link
-              href='/'
-              className='hover:text-foreground text-sm text-(--text-soft) transition-colors'
-            >
-              {t('navigation.home')}
-            </Link>
-          )}
           <a
             href={emailUrl}
             className='bg-foreground text-background rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80'

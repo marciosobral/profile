@@ -17,6 +17,7 @@ import { StateProvider } from '@/providers/state';
 import { ThemeProvider } from '@/providers/theme';
 import { AnimationProvider } from '@/providers/animation';
 import { SettingsPanel } from '@/components/theme/settings-panel';
+import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { JsonLd } from '@/components/seo/json-ld';
 import { PageLoader } from '@/components/layout/page-loader';
@@ -74,6 +75,7 @@ export default async function LocaleLayout({
           <StateProvider>
             <AnimationProvider>
               <ThemeProvider>
+                <Header />
                 <Main>{children}</Main>
                 <Footer />
                 <SettingsPanel />

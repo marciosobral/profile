@@ -11,6 +11,7 @@ import { Main } from '@/components/layout/main';
 import { StateProvider } from '@/providers/state';
 import { AnimationProvider } from '@/providers/animation';
 import { ThemeProvider } from '@/providers/theme';
+import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SettingsPanel } from '@/components/theme/settings-panel';
 
@@ -40,6 +41,7 @@ export default async function RootNotFound() {
           <StateProvider>
             <AnimationProvider>
               <ThemeProvider>
+                <Header />
                 <Main>
                   <StatusPage
                     icon={
