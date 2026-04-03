@@ -15,7 +15,7 @@ interface PageHeaderProps {
   showBack?: boolean;
 }
 
-export function Header({ showBack = true }: PageHeaderProps) {
+export function Header({ showBack = false }: PageHeaderProps) {
   const { mode } = useTheme();
   const t = useTranslations('common');
   const locale = useLocale() as Locale;

@@ -25,7 +25,7 @@ export function StatusPage({
   action,
   children,
   footer,
-  showBack = true,
+  showBack = false,
 }: StatusPageProps) {
   return (
     <Page>

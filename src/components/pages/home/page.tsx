@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <Page>
-      <Header showBack={false} />
+      <Header />
       <Section className='flex-1'>
         <Content className='max-w-xl gap-8 pt-8 pb-16 md:py-16'>
           <AnimatedText order={0} className='w-full'>
