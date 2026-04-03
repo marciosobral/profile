@@ -6,13 +6,11 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { siteConfig } from '@/config/site';
 import { getEmailUrl } from '@/config/social';
-import { useTheme } from '@/hooks/use-theme';
 import type { Locale } from '@/config/i18n';
 
 import LogoSvg from '@assets/logos/last-name.svg';
 
 export function Header() {
-  const { mode } = useTheme();
   const t = useTranslations('common');
   const locale = useLocale() as Locale;
   const emailUrl = getEmailUrl(locale);
@@ -24,7 +22,8 @@ export function Header() {
           <Image
             src={LogoSvg}
             alt={siteConfig.author}
-            className={`h-6 w-auto ${mode === 'dark' ? 'invert' : ''}`}
+            priority
+            className='header-logo h-6 w-auto'
           />
         </Link>
         <nav className='flex items-center gap-4'>

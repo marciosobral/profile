@@ -12,14 +12,11 @@ import { flagLoaderSkip } from '@/lib/loader-state';
 import { Section } from '@/components/layout/section';
 import { Content } from '@/components/layout/content';
 
-// import LogoSvg from '@assets/logos/last-name.svg';
-
 export function Footer() {
   const t = useTranslations('common');
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
-  const { mode } = useTheme();
   const [isPending, startTransition] = useTransition();
 
   const availableLocales = getAvailableLocales();
@@ -34,56 +31,6 @@ export function Footer() {
 
   return (
     <footer className='sticky bottom-0 bg-(--footer-color)'>
-      {/* <Section>
-        <Content className='justify-between gap-3 py-3 sm:flex-row sm:gap-6'>
-          <div className='flex flex-col items-center gap-4 py-6 sm:items-start'>
-            <Image
-              src={LogoSvg}
-              alt={siteConfig.author}
-              className={`h-8 w-auto ${mode === 'dark' ? 'invert' : ''}`}
-            />
-            <div className='flex items-center gap-2'>
-              {getSocialLinks('footer', locale).map((social) => {
-                const IconComponent = socialIcons[social.name];
-                return (
-                  <Link
-                    key={social.name}
-                    href={social.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    aria-label={social.name}
-                    className='hover:text-foreground text-(--text-soft) transition-colors'
-                  >
-                    <IconComponent size={22} weight='fill' />
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className='flex flex-col items-center gap-3 pt-0 pb-6 sm:flex-row sm:gap-6 sm:pt-6'>
-            <NavLink
-              href='/'
-              className='hover:text-foreground text-sm text-(--text-soft) transition-colors'
-            >
-              {t('footer.home')}
-            </NavLink>
-            <NavLink
-              href='/cookies'
-              className='hover:text-foreground text-sm text-(--text-soft) transition-colors'
-            >
-              {t('footer.cookies')}
-            </NavLink>
-            <a
-              href={getEmailUrl(locale)}
-              className='rounded-full border border-(--border-soft) px-4 py-1.5 text-sm transition-colors hover:bg-(--surface-soft)'
-            >
-              {t('footer.contact')}
-            </a>
-          </div>
-        </Content>
-      </Section> */}
-
       <div className='h-px w-full bg-(--line-soft)' />
 
       <Section>

@@ -108,6 +108,16 @@ html {
   scroll-behavior: smooth;
 }
 
+[data-mode='dark'] .header-logo {
+  filter: invert(1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode]) .header-logo {
+    filter: invert(1);
+  }
+}
+
 @keyframes radial-reveal-expand {
   from {
     clip-path: circle(0 at var(--radial-reveal-x) var(--radial-reveal-y));
