@@ -5,7 +5,7 @@ export const locales = ['en-US', 'pt-BR'] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale = 'pt-BR' satisfies Locale;
+export const defaultLocale = 'en-US' satisfies Locale;
 
 export const localePrefix = {
   mode: 'as-needed',
@@ -18,11 +18,11 @@ export const localePrefix = {
 export const localeDetection = true;
 
 export const domains = [
-  // {
-  //   domain: 'marciosobral.com.br',
-  //   defaultLocale: 'pt-BR',
-  //   locales: ['pt-BR'],
-  // },
+  {
+    domain: 'marciosobral.com.br',
+    defaultLocale: 'pt-BR',
+    locales: ['pt-BR'],
+  },
   // {
   //   domain: 'marciosobral.net',
   //   defaultLocale: 'en-US',
@@ -31,7 +31,7 @@ export const domains = [
   {
     domain: 'marciosobral.com',
     defaultLocale: 'en-US',
-    locales: ['en-US', 'pt-BR'],
+    locales: ['en-US'],
   },
 ] satisfies DomainsConfig<typeof locales>;
 
