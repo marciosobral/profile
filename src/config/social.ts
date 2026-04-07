@@ -53,8 +53,14 @@ export const socialConfig: SocialConfigProps[] = [
   },
   {
     name: SocialPlatform.Email,
-    url: 'mailto:me@marciosobral.com',
-    handle: 'me@marciosobral.com',
+    url: {
+      'en-US': 'mailto:me@marciosobral.com',
+      'pt-BR': 'mailto:contato@marciosobral.com',
+    },
+    handle: {
+      'en-US': 'me@marciosobral.com',
+      'pt-BR': 'contato@marciosobral.com',
+    },
     visibility: {
       home: true,
     },
