@@ -1,7 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { routing } from './i18n/routing';
+import { clientRouting } from './i18n/routing';
 import { isMaintenanceActive } from './lib/maintenance';
 import { getHostFromHeaders } from './utils/host';
 import {
@@ -13,7 +13,7 @@ import {
 } from './config/i18n';
 import { MAINTENANCE_ROUTE, type RoutePath } from './config/routes';
 
-const handleI18nRouting = createMiddleware(routing);
+const handleI18nRouting = createMiddleware(clientRouting);
 
 const knownDomains = domains.map((d) => d.domain);
 

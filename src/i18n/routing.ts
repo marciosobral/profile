@@ -17,3 +17,11 @@ export const routing = defineRouting({
   domains,
   pathnames,
 });
+
+export const clientRouting = defineRouting({
+  locales,
+  defaultLocale,
+  localePrefix,
+  localeDetection,
+  pathnames,
+});
