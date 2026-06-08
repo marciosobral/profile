@@ -65,24 +65,24 @@ export const socialConfig: SocialConfigProps[] = [
       home: true,
     },
   },
-  {
-    name: SocialPlatform.X,
-    url: 'https://x.com/marciosobral',
-    handle: '@marciosobral',
-    visibility: {
-      jsonLd: true,
-      home: true,
-    },
-  },
-  {
-    name: SocialPlatform.Instagram,
-    url: 'https://instagram.com/marciosobral_',
-    handle: '@marciosobral_',
-    visibility: {
-      jsonLd: true,
-      home: true,
-    },
-  },
+  // {
+  //   name: SocialPlatform.X,
+  //   url: 'https://x.com/marciosobral',
+  //   handle: '@marciosobral',
+  //   visibility: {
+  //     jsonLd: true,
+  //     home: true,
+  //   },
+  // },
+  // {
+  //   name: SocialPlatform.Instagram,
+  //   url: 'https://instagram.com/marciosobral_',
+  //   handle: '@marciosobral_',
+  //   visibility: {
+  //     jsonLd: true,
+  //     home: true,
+  //   },
+  // },
   {
     name: SocialPlatform.Discord,
     url: 'https://discord.com/users/marciosobral',
